@@ -1,54 +1,54 @@
 USE Northwind
 
---Select Sorgularýnda (Where) Þartý Yazmak
+--Select SorgularÄ±nda (Where) ÅžartÄ± Yazmak
 
 SELECT * FROM Personeller
 
---Personeller tablosunda þehri London olan verileri listeleyelim.
+--Personeller tablosunda ÅŸehri London olan verileri listeleyelim.
 SELECT * FROM Personeller WHERE Sehir = 'London'
 
---Personeller tablosunda baðlý .alýþtýðý kiþi sayýsý 5 ten küçük olanlarý listeleyelim.
+--Personeller tablosunda baÄŸlÄ± .alÄ±ÅŸtÄ±ÄŸÄ± kiÅŸi sayÄ±sÄ± 5 ten kÃ¼Ã§Ã¼k olanlarÄ± listeleyelim.
 SELECT * FROM Personeller WHERE BagliCalistigiKisi < 5
 
---Personeller tablosunda þehri London ve ülkesi UK olan verileri listeleyelim.
+--Personeller tablosunda ÅŸehri London ve Ã¼lkesi UK olan verileri listeleyelim.
 SELECT * FROM Personeller WHERE Sehir = 'London' AND Ulke = 'UK'
 
---Personeller tablosunda UnvanEki Mr. olan veya þehri Seattle olan verileri listeleyelim.
+--Personeller tablosunda UnvanEki Mr. olan veya ÅŸehri Seattle olan verileri listeleyelim.
 SELECT * FROM Personeller WHERE Sehir = 'Seattle' OR UnvanEki = 'Mr.'
 
 --Personeller tablosunda Adi Robert. olan ve King Seattle olan verileri listeleyelim.
 SELECT * FROM Personeller WHERE Adi = 'Robert' AND SoyAdi = 'King'
 
---PersonelID'si 5'ten küçük olanlarý getir
+--PersonelID'si 5'ten kÃ¼Ã§Ã¼k olanlarÄ± getir
 SELECT * FROM Personeller WHERE PersonelID = 5
 
---PersonelID'si 5'ten büyük ve eþit olan tüm personelleri getir
+--PersonelID'si 5'ten bÃ¼yÃ¼k ve eÅŸit olan tÃ¼m personelleri getir
 SELECT * FROM Personeller WHERE PersonelID >= 5
 
---1993 yýlýnda iþe baþlayanlarý getir
+--1993 yÄ±lÄ±nda iÅŸe baÅŸlayanlarÄ± getir
 SELECT * FROM Personeller WHERE YEAR(IseBaslamaTarihi) = 1993
 
---1992 yýlýndan sonra iþe baþlayanlarý getir
+--1992 yÄ±lÄ±ndan sonra iÅŸe baÅŸlayanlarÄ± getir
 SELECT * FROM Personeller WHERE YEAR(IseBaslamaTarihi) > 1992
 
---Doðum tarihi ayýn 29'u olmayanlarý baþlayanlarý getir
+--DoÄŸum tarihi ayÄ±n 29'u olmayanlarÄ± baÅŸlayanlarÄ± getir
 SELECT * FROM Personeller WHERE Day(DogumTarihi) <> 29
 
---Doðum yýlý 1950-1960 yýllarý arasýndakileri olan personelleri getir 
+--DoÄŸum yÄ±lÄ± 1950-1960 yÄ±llarÄ± arasÄ±ndakileri olan personelleri getir 
 SELECT * FROM Personeller WHERE YEAR(DogumTarihi) > 1950 AND YEAR(DogumTarihi) < 1960
 
---Personeller tablosunda yaþadýðý þehir London,Tacoma veya Kirkland olan verileri listeleyelim.
+--Personeller tablosunda yaÅŸadÄ±ÄŸÄ± ÅŸehir London,Tacoma veya Kirkland olan verileri listeleyelim.
 SELECT * FROM Personeller WHERE Sehir = 'London' OR Sehir = 'Tacoma' OR Sehir = 'Kirkland'
 
 ---------------------------------------WHERE FINISH---------------------------------------------
 
 --BETWEEN 
 
---Doðum yýlý 1950-1960 yýllarý (dahil) arasýndakileri olan personelleri getir 
+--DoÄŸum yÄ±lÄ± 1950-1960 yÄ±llarÄ± (dahil) arasÄ±ndakileri olan personelleri getir 
 SELECT * FROM Personeller WHERE YEAR(DogumTarihi) BETWEEN  1950 AND 1960
 
 --IN 
---Personeller tablosunda yaþadýðý þehir London,Tacoma veya Kirkland olan verileri listeleyelim.
+--Personeller tablosunda yaÅŸadÄ±ÄŸÄ± ÅŸehir London,Tacoma veya Kirkland olan verileri listeleyelim.
 SELECT * FROM Personeller WHERE Sehir IN('London','Tacoma','Kirkland')
 
 
@@ -59,86 +59,86 @@ SELECT * FROM Personeller WHERE Sehir IN('London','Tacoma','Kirkland')
 
 --% (NOT IMPORTANT GENERAL) OPERATOR
 
---Ýsminin baþ harfi j olan personeller, getir
+--Ä°sminin baÅŸ harfi j olan personeller, getir
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE 'j%'
 
---Ýsminin son harfi y ile biten personeller, getir
+--Ä°sminin son harfi y ile biten personeller, getir
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE '%y'
 
---Ýsminin  son 3 harfi ert ile biten personeller, getir
+--Ä°sminin  son 3 harfi ert ile biten personeller, getir
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE '%ert'
 
---Ýsminin  baþ harfi r olan ve son harfi t ile biten personeller, getir
---Gereksiz Kullaným
+--Ä°sminin  baÅŸ harfi r olan ve son harfi t ile biten personeller, getir
+--Gereksiz KullanÄ±m
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE 'r%' AND Adi LIKE '%t'
---Daha iyi çözüm
+--Daha iyi Ã§Ã¶zÃ¼m
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE 'r%t'
 
 
---Ýsminin içinde an geçen personeller, getir
+--Ä°sminin iÃ§inde an geÃ§en personeller, getir
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE '%an%'
 
---Ýsminin baþ harfi n ve içinde an geçen personeller, getir
+--Ä°sminin baÅŸ harfi n ve iÃ§inde an geÃ§en personeller, getir
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE 'n%an%'
 
---Ýsminin içinde an geçen personeller, getir
+--Ä°sminin iÃ§inde an geÃ§en personeller, getir
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE '%an%'
 
---Ýsminin içinde an geçen personeller, getir
+--Ä°sminin iÃ§inde an geÃ§en personeller, getir
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE '%an%'
 
 
 -- _(NOT IMPORTANT SPECIAL) OPERATOR
 
---Ýsmini ilk harfi a ikinci harfi farketmez ve üçüncü harfi d olan personeli getir
+--Ä°smini ilk harfi a ikinci harfi farketmez ve Ã¼Ã§Ã¼ncÃ¼ harfi d olan personeli getir
 SELECT * FROM Personeller WHERE Adi LIKE 'a_d%'
 
---Ýsmini ilk harfi m ikinci-üçüncü-dördüncü harfi farketmez beþinci harfi a olan personeli getir
+--Ä°smini ilk harfi m ikinci-Ã¼Ã§Ã¼ncÃ¼-dÃ¶rdÃ¼ncÃ¼ harfi farketmez beÅŸinci harfi a olan personeli getir
 SELECT * FROM Personeller WHERE Adi LIKE 'm___a%'
 
 --[] (or) OPERATOR
---Ýsmini ilk harfi n ya da m ya da r olan personeli getir
+--Ä°smini ilk harfi n ya da m ya da r olan personeli getir
 SELECT * FROM Personeller WHERE Adi LIKE '[nmr]%'
 
---Ýsminin içerisinde a ya da i olan personeli getir
+--Ä°sminin iÃ§erisinde a ya da i olan personeli getir
 SELECT * FROM Personeller WHERE Adi LIKE '%[ai]%'
 
---[*-*] (Alfabetik Arasýnda) OPERATOR
+--[*-*] (Alfabetik ArasÄ±nda) OPERATOR
 
---Ýsminin baþ harfi a ile k arasýnda alfabetik sýraya göre herhangi bir harf olan personeli getir
+--Ä°sminin baÅŸ harfi a ile k arasÄ±nda alfabetik sÄ±raya gÃ¶re herhangi bir harf olan personeli getir
 SELECT * FROM Personeller WHERE Adi LIKE '[a-k]%'
 
 -- [^*] (NOT) OPERATOR
 
---Ýsminin baþ harfi a olmayan personeller, getir
+--Ä°sminin baÅŸ harfi a olmayan personeller, getir
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE '[^a]%'
 
 
---Ýsminin baþ harfi an olmayan personeller, getir
+--Ä°sminin baÅŸ harfi an olmayan personeller, getir
 SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE '[^an]%'
 
---Excape(Kaçýþ) Karakterleri
+--Excape(KaÃ§Ä±ÅŸ) Karakterleri
 /*
-  Like sorgularýnda kullandýðýmýz %, _, [] gibi özel ifadeler eðer ki verilerimiz içerisinde geçiyorsa 
-  sorgulama esnasýnda hata ile karþýlaþabiliriz.Böyle durumlarda bu ifadelerin özel ifade olup 
-  olmadýðýný escape ila belirleyebiliriz
+  Like sorgularÄ±nda kullandÄ±ÄŸÄ±mÄ±z %, _, [] gibi Ã¶zel ifadeler eÄŸer ki verilerimiz iÃ§erisinde geÃ§iyorsa 
+  sorgulama esnasÄ±nda hata ile karÅŸÄ±laÅŸabiliriz.BÃ¶yle durumlarda bu ifadelerin Ã¶zel ifade olup 
+  olmadÄ±ÄŸÄ±nÄ± escape ila belirleyebiliriz
 */
 
 --Two Method
 
---[] Operatörü ile
+--[] OperatÃ¶rÃ¼ ile
 --Escape Komutu ile
 
 /*
-  Alt çizgi ile baþlayan isimler getirilmek istendiðinde sisteme bunu belirtmeliyiz 
-  aþaðýdaki kullaným yannlýþ kullanýmdýr.(Sistem tüm kayýtlarý döndürür) 
+  Alt Ã§izgi ile baÅŸlayan isimler getirilmek istendiÄŸinde sisteme bunu belirtmeliyiz 
+  aÅŸaÄŸÄ±daki kullanÄ±m yannlÄ±ÅŸ kullanÄ±mdÄ±r.(Sistem tÃ¼m kayÄ±tlarÄ± dÃ¶ndÃ¼rÃ¼r) 
 */
 --Select * from Personeller WHERE Adi LIKE '_%'
 
---Alt çizgi ile baþlayan isimleri getir
---Doðru Kullanýmlar 
+--Alt Ã§izgi ile baÅŸlayan isimleri getir
+--DoÄŸru KullanÄ±mlar 
 Select * from Personeller WHERE Adi LIKE '[_]%'
-Select * from Personeller WHERE Adi LIKE 'ü_%' Escape 'ü'
+Select * from Personeller WHERE Adi LIKE 'Ã¼_%' Escape 'Ã¼'
 
 
 -----------------------LIKE OPERATOR AND ESCAPE COMMAND FINISH----------------------------------
@@ -166,55 +166,55 @@ Select SUM(PersonelID) AS MINIMUM from Personeller
 
 --STRING FUNCTION
 
---LEFT : Soldan(baþtan) belirtilen karakter sayýsýný getirir
+--LEFT : Soldan(baÅŸtan) belirtilen karakter sayÄ±sÄ±nÄ± getirir
 SELECT LEFT(Adi,2) FROM Personeller
 
---RIGHT : Saðdan(sondan) belirtilen karakter sayýsýný getirir
+--RIGHT : SaÄŸdan(sondan) belirtilen karakter sayÄ±sÄ±nÄ± getirir
 SELECT RIGHT(Adi,3) FROM Personeller
 
---UPPER : Büyük harfe çevirir
+--UPPER : BÃ¼yÃ¼k harfe Ã§evirir
 SELECT UPPER(Adi) FROM Personeller
 
---LOWER : Küçük harfe çevirir
+--LOWER : KÃ¼Ã§Ã¼k harfe Ã§evirir
 SELECT LOWER(Adi) FROM Personeller
 
---LEN : String uzunluðunu verir
+--LEN : String uzunluÄŸunu verir
 SELECT LEN(Adi) as LENGTH From Personeller
 
---SUBSTRING : Belirtilen indexten itibaren belirli sayýda karakter getirir
+--SUBSTRING : Belirtilen indexten itibaren belirli sayÄ±da karakter getirir
 SELECT SUBSTRING(Adi,3,2) FROM Personeller
 
---LTRIM : Soldan boþluklarý kýrar
-SELECT '          Özkan'
-SELECT LTRIM('          Özkan')
+--LTRIM : Soldan boÅŸluklarÄ± kÄ±rar
+SELECT '          Ã–zkan'
+SELECT LTRIM('          Ã–zkan')
 
---RTRIM : Saðdan boþluklarý kýrar
-SELECT 'Özkan             '
-SELECT RTRIM('Özkan          ')
+--RTRIM : SaÄŸdan boÅŸluklarÄ± kÄ±rar
+SELECT 'Ã–zkan             '
+SELECT RTRIM('Ã–zkan          ')
 
---REVERSE : Tersine çevirir
+--REVERSE : Tersine Ã§evirir
 SELECT REVERSE(Adi) FROM Personeller
 
---REPLACE : Belirtilen ifadeyi , belirtilen ifade ile deðiþtir
-SELECT REPLACE('MY NAME IS Özkan','Özkan','Ekrem')
+--REPLACE : Belirtilen ifadeyi , belirtilen ifade ile deÄŸiÅŸtir
+SELECT REPLACE('MY NAME IS Ã–zkan','Ã–zkan','Ekrem')
 
---STRING_SPLIT : Birinci parametrede verilen metni ikinci parametrede verilen karaktere göre ayrýþtýrýr. 
---Geriye value adýnda kolon barýndýran ve satýrlarýnda karaktere göre ayrýþtýrma sonucunu tutan bir tablo döner.
-SELECT * FROM  STRING_SPLIT('Bu metin boþluk karakterine göre ayrýþtýrýlacak',' ')
+--STRING_SPLIT : Birinci parametrede verilen metni ikinci parametrede verilen karaktere gÃ¶re ayrÄ±ÅŸtÄ±rÄ±r. 
+--Geriye value adÄ±nda kolon barÄ±ndÄ±ran ve satÄ±rlarÄ±nda karaktere gÃ¶re ayrÄ±ÅŸtÄ±rma sonucunu tutan bir tablo dÃ¶ner.
+SELECT * FROM  STRING_SPLIT('Bu metin boÅŸluk karakterine gÃ¶re ayrÄ±ÅŸtÄ±rÄ±lacak',' ')
 
---PATINDEX : Ýlk parametrede aldýðý paterni ikinci parametrede verilen strin içerisinde arar 
---ve bulduðu ilk indeki döndürür. Bulamazsa 0 döner.
-SELECT PATINDEX('%R_A%', 'SAÝT ORHAN')
+--PATINDEX : Ä°lk parametrede aldÄ±ÄŸÄ± paterni ikinci parametrede verilen strin iÃ§erisinde arar 
+--ve bulduÄŸu ilk indeki dÃ¶ndÃ¼rÃ¼r. Bulamazsa 0 dÃ¶ner.
+SELECT PATINDEX('%R_A%', 'SAÄ°T ORHAN')
 
---CHARINDEX : Belirtilen karakterin veri içinde index numarasýný verir
+--CHARINDEX : Belirtilen karakterin veri iÃ§inde index numarasÄ±nÄ± verir
 SELECT CHARINDEX('r',Adi) FROM Personeller
 SELECT MusteriAdi, CHARINDEX(' ',MusteriAdi) AS INDEX_NO FROM Musteriler
 
 --CHARINDEX EXAMPLE
---Müþteriler tablosunun MusteriAdi kolonundan sadece adlarý çekelim
+--MÃ¼ÅŸteriler tablosunun MusteriAdi kolonundan sadece adlarÄ± Ã§ekelim
 Select MusteriAdi from Musteriler
 Select SUBSTRING(MusteriAdi,0,CHARINDEX(' ',MusteriAdi)) from Musteriler
---Müþteriler tablosunun MusteriAdi kolonundan sadece soyadlarý çekelim
+--MÃ¼ÅŸteriler tablosunun MusteriAdi kolonundan sadece soyadlarÄ± Ã§ekelim
 Select SUBSTRING(MusteriAdi,CHARINDEX(' ',MusteriAdi),LEN(MusteriAdi)-CHARINDEX(' ',MusteriAdi)-1) AS SOYAD from Musteriler
 
 
@@ -227,23 +227,23 @@ SELECT 3*3
 SELECT 4/2
 SELECT 9-7
 
---PI : Pi sayýsýný verir
+--PI : Pi sayÄ±sÄ±nÄ± verir
 SELECT PI()
 
---SIN : Sinüs Alýr
+--SIN : SinÃ¼s AlÄ±r
 SELECT SIN(PI())
 
---POWER : Üs alýr
+--POWER : Ãœs alÄ±r
 SELECT POWER(2,3)
 
---ABS: Mutlak alýr
+--ABS: Mutlak alÄ±r
 SELECT ABS(-12)
 
---RAND : 0-1 arasý Random sayý atar
+--RAND : 0-1 arasÄ± Random sayÄ± atar
 SELECT RAND()
 
 --FLOOR : Yuvarlama yapar
---0-100 arasý sayý üretir
+--0-100 arasÄ± sayÄ± Ã¼retir
 SELECT FLOOR(RAND()*100)
 
 
@@ -252,20 +252,20 @@ SELECT FLOOR(RAND()*100)
 
 --DATE FUNCTION 
 
---GETDATE : Bu günün tarihini verir
+--GETDATE : Bu gÃ¼nÃ¼n tarihini verir
 SELECT GETDATE()
 
---DATEADD : Verilen tarihe gün ay yýl ekler
+--DATEADD : Verilen tarihe gÃ¼n ay yÄ±l ekler
 SELECT DATEADD(DAY,999,GETDATE())
 SELECT DATEADD(MONTH,999,GETDATE())
 SELECT DATEADD(YEAR,999,GETDATE())
 
---DATEDIFF : Ýki tarih arasý farký hesaplar 
+--DATEDIFF : Ä°ki tarih arasÄ± farkÄ± hesaplar 
 SELECT DATEDIFF(DAY,'09-07-1999',GETDATE())
 SELECT DATEDIFF(MONTH,'09-07-1999',GETDATE())
 SELECT DATEDIFF(YEAR,'09-07-1999',GETDATE())
 
---DATEPART : Verilen tarihin haftanýn,ayýn yahut yýlýn kaçýncý günü olduðunu hesaplar
+--DATEPART : Verilen tarihin haftanÄ±n,ayÄ±n yahut yÄ±lÄ±n kaÃ§Ä±ncÄ± gÃ¼nÃ¼ olduÄŸunu hesaplar
 SELECT DATEPART(DAY,GETDATE())
 SELECT DATEPART(MONTH,GETDATE())
 SELECT DATEPART(DW,GETDATE())
@@ -289,17 +289,17 @@ SELECT DISTINCT Sehir FROM Personeller
 --GROUP BY
 SELECT * FROM Urunler
 
---Her bir kategoriden kaç tane var sýrayla getir
+--Her bir kategoriden kaÃ§ tane var sÄ±rayla getir
 SELECT KategoriID,COUNT(*) AS COUNT_TOTAL 
 FROM Urunler 
 GROUP BY KategoriID
 
---Her bir kategoriden tedarikçiye göre kaç tane var sýrayla getir
+--Her bir kategoriden tedarikÃ§iye gÃ¶re kaÃ§ tane var sÄ±rayla getir
 SELECT KategoriID,TedarikciID,COUNT(*) AS COUNT_TOTAL 
 FROM Urunler 
 GROUP BY KategoriID,TedarikciID
 
---Her bir personel toplam ne kadar nakliyet ücretine sahip ve toplam kaç tane satýþý var
+--Her bir personel toplam ne kadar nakliyet Ã¼cretine sahip ve toplam kaÃ§ tane satÄ±ÅŸÄ± var
 SELECT PersonelID,SUM(NakliyeUcreti) AS TOTAL_GAIN,COUNT(*) AS COUNT_TOTAL 
 FROM Satislar 
 GROUP BY PersonelID
@@ -307,7 +307,7 @@ GROUP BY PersonelID
 --GROUP BY -> WHERE 
 SELECT * FROM Urunler
 
---Her bir kategoriden kaç tane var Id si 5 den büyükleri sýrayla getir 
+--Her bir kategoriden kaÃ§ tane var Id si 5 den bÃ¼yÃ¼kleri sÄ±rayla getir 
 SELECT KategoriID,COUNT(*) AS COUNT_TOTAL 
 FROM Urunler 
 WHERE KategoriID >= 5 
@@ -318,7 +318,7 @@ GROUP BY KategoriID
 
 SELECT * FROM Urunler
 
---Her bir kategoriden kaç tane var Id si 5 den büyükleri sýrayla getir 
+--Her bir kategoriden kaÃ§ tane var Id si 5 den bÃ¼yÃ¼kleri sÄ±rayla getir 
 SELECT KategoriID,COUNT(*) AS COUNT_TOTAL 
 FROM Urunler 
 WHERE KategoriID >= 5 
@@ -327,8 +327,8 @@ HAVING COUNT(*) > 6
 
 -----------------------------------------GROUP BY FINISH------------------------------------------
 
---Merge Tables Side by Side(Tablolarý Yan yana birleþtirme)
---Ýlkel yöntem(NOT JOIN)
+--Merge Tables Side by Side(TablolarÄ± Yan yana birleÅŸtirme)
+--Ä°lkel yÃ¶ntem(NOT JOIN)
 SELECT * FROM Personeller
 SELECT * FROM Satislar
 SELECT * FROM Personeller,Satislar
@@ -339,72 +339,72 @@ SELECT  P.PersonelID, S.MusteriID FROM Personeller P,Satislar S WHERE P.Personel
 
 --INNER JOIN
 
---Genel Mantýk
---SELECT * FROM Tablo1 Inner Joýn Tablo2 on Tablo1.ÝliþkiliKolon=Tablo2.ÝliþkiliKolon
+--Genel MantÄ±k
+--SELECT * FROM Tablo1 Inner JoÄ±n Tablo2 on Tablo1.Ä°liÅŸkiliKolon=Tablo2.Ä°liÅŸkiliKolon
 
---Tablolara Alias tanýmlanabilir
---SELECT * FROM Tablo1 t1 Inner Joýn Tablo2 t2 on t1.ÝliþkiliKolon=t2.ÝliþkiliKolon
+--Tablolara Alias tanÄ±mlanabilir
+--SELECT * FROM Tablo1 t1 Inner JoÄ±n Tablo2 t2 on t1.Ä°liÅŸkiliKolon=t2.Ä°liÅŸkiliKolon
 
---Ýki tabloyu iliþkisel birleþtirme
+--Ä°ki tabloyu iliÅŸkisel birleÅŸtirme
 
---Hangi personel hangi satýþalrý yapmýþtýr(Personeller,Satislar)
+--Hangi personel hangi satÄ±ÅŸalrÄ± yapmÄ±ÅŸtÄ±r(Personeller,Satislar)
 SELECT * FROM Personeller P INNER JOIN Satislar S ON P.PersonelID = S.PersonelID
 
 
---Hangi ürün hangi kategory de
+--Hangi Ã¼rÃ¼n hangi kategory de
 SELECT U.UrunAdi,K.KategoriAdi 
 FROM Urunler U INNER JOIN Kategoriler K 
 ON U.KategoriID = K.KategoriID
 
---Where Kullanýmý
---Beverages kategorisindeki ürünlerim (Urunler,Kategory)
+--Where KullanÄ±mÄ±
+--Beverages kategorisindeki Ã¼rÃ¼nlerim (Urunler,Kategory)
 SELECT U.UrunAdi 
 FROM Urunler U INNER JOIN Kategoriler K 
 ON U.KategoriID = K.KategoriID 
 WHERE K.KategoriAdi = 'Beverages'
 
---Beverages kategorisindeki ürünlerimin sayýsý kaçtýr (Urunler,Kategory)
+--Beverages kategorisindeki Ã¼rÃ¼nlerimin sayÄ±sÄ± kaÃ§tÄ±r (Urunler,Kategory)
 SELECT COUNT(U.UrunAdi) 
 FROM Urunler U INNER JOIN Kategoriler K 
 ON U.KategoriID = K.KategoriID 
 WHERE K.KategoriAdi = 'Beverages' 
 
---Seafood kategorisindeki ürünlerin listesi
+--Seafood kategorisindeki Ã¼rÃ¼nlerin listesi
 SELECT U.UrunAdi 
 FROM Urunler U INNER JOIN Kategoriler K 
 ON U.KategoriID = K.KategoriID
 WHERE K.KategoriAdi = 'Seafood'
 
---Hangi satýþý hangi eleman yapmýþ(Satislar,Personeller)
+--Hangi satÄ±ÅŸÄ± hangi eleman yapmÄ±ÅŸ(Satislar,Personeller)
 SELECT S.SatisID,P.Adi + ' ' + P.SoyAdi AS Personel 
 FROM Satislar S INNER JOIN Personeller P 
 ON S.PersonelID = P.PersonelID 
 
---Faks numarasý "null" olmayan tedarikçilerin alýnmýþ ürünler nelerdir(Urunler,Tedarikçiler)
+--Faks numarasÄ± "null" olmayan tedarikÃ§ilerin alÄ±nmÄ±ÅŸ Ã¼rÃ¼nler nelerdir(Urunler,TedarikÃ§iler)
 SELECT T.Faks,U.UrunAdi 
 FROM Urunler U INNER JOIN Tedarikciler T 
 ON U.TedarikciID = T.TedarikciID 
 WHERE T.Faks IS NOT NULL --<> 'NULL'
 
---Ýkiden fazla tabloyu iliþkisel birleþtirme
+--Ä°kiden fazla tabloyu iliÅŸkisel birleÅŸtirme
 
---1997 yýlýndan sonra Nancy nin satýþ yaptýðý firma isimleri(Musteriler,Satislar,Personeller)
+--1997 yÄ±lÄ±ndan sonra Nancy nin satÄ±ÅŸ yaptÄ±ÄŸÄ± firma isimleri(Musteriler,Satislar,Personeller)
 SELECT P.Adi,M.SirketAdi 
 FROM Musteriler M INNER JOIN Satislar S 
 ON M.MusteriID = S.MusteriID INNER JOIN Personeller P 
 ON S.PersonelID = P.PersonelID 
 WHERE P.Adi = 'Nancy' AND YEAR(S.SatisTarihi) > 1997
 
---Limited olan tedarikçilerden alýnmýþ seafood kategorisindeki ürünlerimin toplam satýþ tutarý(Urunler,Tedarikçiler,Kategoriler)
+--Limited olan tedarikÃ§ilerden alÄ±nmÄ±ÅŸ seafood kategorisindeki Ã¼rÃ¼nlerimin toplam satÄ±ÅŸ tutarÄ±(Urunler,TedarikÃ§iler,Kategoriler)
 SELECT SUM(U.HedefStokDuzeyi*U.BirimFiyati) AS TOTAL 
 FROM Urunler U INNER JOIN Tedarikciler T 
 ON U.TedarikciID=T.TedarikciID INNER JOIN Kategoriler K 
 ON U.KategoriID = K.KategoriID 
 WHERE K.KategoriAdi = 'Seafood' AND T.SirketAdi LIKE '%Ltd.%'
 
---Ayný tabloyu iliþkisel olarak birleþtirme
+--AynÄ± tabloyu iliÅŸkisel olarak birleÅŸtirme
 
---Personellerimin baðlý olarak çalýþtýðý kiþileri listele? (Personeller,Personeller)
+--Personellerimin baÄŸlÄ± olarak Ã§alÄ±ÅŸtÄ±ÄŸÄ± kiÅŸileri listele? (Personeller,Personeller)
 SELECT P1.Adi,P2.Adi AS BGK 
 FROM Personeller P1 INNER JOIN Personeller P2 
 ON P1.BagliCalistigiKisi=P2.PersonelID
@@ -412,8 +412,8 @@ ON P1.BagliCalistigiKisi=P2.PersonelID
 --INNER JOIN DE GROUP BY
 
 /*
-  Hangi personelin(adý ve soyadý birlikte), toplam kaç adetlik satýþ yapmýþ.Satýþ adedi 100 den fazla olanlar 
-  ve personelin adýnýn baþ harfi M olan kayýtlar gelsin(Personeller,Satislar)
+  Hangi personelin(adÄ± ve soyadÄ± birlikte), toplam kaÃ§ adetlik satÄ±ÅŸ yapmÄ±ÅŸ.SatÄ±ÅŸ adedi 100 den fazla olanlar 
+  ve personelin adÄ±nÄ±n baÅŸ harfi M olan kayÄ±tlar gelsin(Personeller,Satislar)
 */
 
 SELECT P.Adi + ' ' + P.SoyAdi AS AD,COUNT(S.SatisID) AS TOTAL_SALE 
@@ -423,20 +423,20 @@ WHERE P.Adi LIKE 'M%'
 GROUP BY P.Adi + ' ' + P.SoyAdi 
 HAVING COUNT(S.SatisID) > 100 
 
---Seafood Kategorisindeki ürünlerin sayýsý(Urunler,Kategoriler)
+--Seafood Kategorisindeki Ã¼rÃ¼nlerin sayÄ±sÄ±(Urunler,Kategoriler)
 SELECT K.KategoriAdi,COUNT(U.KategoriID) AS TOTAL 
 FROM Urunler U INNER JOIN Kategoriler K 
 ON U.KategoriID = K.KategoriID 
 WHERE K.KategoriAdi='Seafood'
 GROUP BY K.KategoriAdi
 
---Hangi personelim toplam kaç adet satýþ yapmýþ(Personeller,Satislar)
+--Hangi personelim toplam kaÃ§ adet satÄ±ÅŸ yapmÄ±ÅŸ(Personeller,Satislar)
 SELECT P.Adi + ' ' + P.SoyAdi AS AD,COUNT(S.SatisID) AS TOTAL_ADET 
 FROM Personeller P INNER JOIN Satislar S
 ON S.PersonelID=P.PersonelID 
 GROUP BY P.Adi + ' ' + P.SoyAdi 
 
---En çok Satýþ Yapan personelim
+--En Ã§ok SatÄ±ÅŸ Yapan personelim
 SELECT Top 1 P.Adi + ' ' + P.SoyAdi AS AD,COUNT(S.SatisID) AS TOTAL_SALE 
 FROM Personeller P INNER JOIN Satislar S 
 ON S.PersonelID=P.PersonelID 
@@ -444,9 +444,9 @@ GROUP BY P.Adi + ' ' + P.SoyAdi
 ORDER BY COUNT(S.SatisID) DESC
 
 /*
-  Adýnda a harfi olan personellerin satýþ id si 10500 den büyük olan satýþlarýn toplam tutarýný (miktar*birimfiyat) 
-  en yüksek toplam tutardan en alçak tutara sýralanacak þekilde 
-  ve bu satýþlarýn hangi tarihte gerçekleþtiðini listele(Personeller,SatisDetaylarý,Satislar)
+  AdÄ±nda a harfi olan personellerin satÄ±ÅŸ id si 10500 den bÃ¼yÃ¼k olan satÄ±ÅŸlarÄ±n toplam tutarÄ±nÄ± (miktar*birimfiyat) 
+  en yÃ¼ksek toplam tutardan en alÃ§ak tutara sÄ±ralanacak ÅŸekilde 
+  ve bu satÄ±ÅŸlarÄ±n hangi tarihte gerÃ§ekleÅŸtiÄŸini listele(Personeller,SatisDetaylarÄ±,Satislar)
 */
 
 SELECT P.Adi + ' ' + P.SoyAdi AS AD,SUM(SD.Miktar*SD.BirimFiyati) AS TOTAL_SALE,S.SatisTarihi
@@ -462,11 +462,11 @@ ORDER BY SUM(SD.Miktar*SD.BirimFiyati) DESC
 
 --OUTER JOIN
 
---Inner join'de eþleþen veriler getiriliyordu. Outer join'de ise eþleþmeyenler getirilir.
+--Inner join'de eÅŸleÅŸen veriler getiriliyordu. Outer join'de ise eÅŸleÅŸmeyenler getirilir.
 
 --LEFT JOIN
 
---Join ifadesinin solundaki tablodan tüm kayýtlarý getirir.Saðýndaki tablodan eþleþenleri yan yana eþleþmeyenleri null olarak getirir
+--Join ifadesinin solundaki tablodan tÃ¼m kayÄ±tlarÄ± getirir.SaÄŸÄ±ndaki tablodan eÅŸleÅŸenleri yan yana eÅŸleÅŸmeyenleri null olarak getirir
 USE OrnekVT
 SELECT * FROM Oyuncular O LEFT OUTER JOIN Filmler F ON O.FilmId=F.FilmId
 SELECT * FROM Filmler F LEFT OUTER JOIN Oyuncular O ON O.FilmId=F.FilmId
@@ -477,7 +477,7 @@ SELECT * FROM Filmler F LEFT JOIN Oyuncular O ON O.FilmId=F.FilmId
 
 --RIGHT JOIN
 
---Join ifadesinin saðýndaki tablodan tüm kayýtlarý getirir.Solundaki tablodan eþleþenleri yan yana eþleþmeyenleri null olarak getirir
+--Join ifadesinin saÄŸÄ±ndaki tablodan tÃ¼m kayÄ±tlarÄ± getirir.Solundaki tablodan eÅŸleÅŸenleri yan yana eÅŸleÅŸmeyenleri null olarak getirir
 SELECT * FROM Oyuncular O RIGHT OUTER JOIN Filmler F ON O.FilmId=F.FilmId
 SELECT * FROM Filmler F RIGHT OUTER JOIN Oyuncular O ON O.FilmId=F.FilmId
 
@@ -487,7 +487,7 @@ SELECT * FROM Filmler F RIGHT JOIN Oyuncular O ON O.FilmId=F.FilmId
 
 --FULL JOIN
 
---Joinin iki tarafýndaki tablolardan eþleþen eþleþmeyen hepsini getirir
+--Joinin iki tarafÄ±ndaki tablolardan eÅŸleÅŸen eÅŸleÅŸmeyen hepsini getirir
 SELECT * FROM Oyuncular O FULL OUTER JOIN Filmler F ON O.FilmId=F.FilmId
 
 
@@ -518,70 +518,70 @@ SELECT P.Adi,B.BolgeID FROM Personeller P CROSS JOIN Bolge B
 SELECT * FROM Personeller
 
 --INSERT
-INSERT Personeller(Adi,SoyAdi) VALUES ('Özkan','Parlakkýlýç')
+INSERT Personeller(Adi,SoyAdi) VALUES ('Ã–zkan','ParlakkÄ±lÄ±Ã§')
 
 --[Dikkat edilmesi gerekenler!!!]
---INTO komudu ile yazýlýr
+--INTO komudu ile yazÄ±lÄ±r
 
-INSERT INTO Personeller(Adi,SoyAdi) VALUES ('Özkan','Parlakkýlýç')
---Kolonun kabul ettiði veri tipi ve karakter uzunluðunda kayýt yapýlabilir
---Not Null olan kolonlara boþ býrakýlamayacaklarýndan dolayý mutlaka deðer gönderilmelidir
+INSERT INTO Personeller(Adi,SoyAdi) VALUES ('Ã–zkan','ParlakkÄ±lÄ±Ã§')
+--Kolonun kabul ettiÄŸi veri tipi ve karakter uzunluÄŸunda kayÄ±t yapÄ±labilir
+--Not Null olan kolonlara boÅŸ bÄ±rakÄ±lamayacaklarÄ±ndan dolayÄ± mutlaka deÄŸer gÃ¶nderilmelidir
 
 INSERT INTO Personeller(Adi,SoyAdi,Unvan,UnvanEki) VALUES ('','','a','b')
---Otomatik artan kolonlara deðer gönderilmez
---Tablodaki seçilen yahut bütün kolonlara gönderileceðini belirtip , göndermezsek hata verir
+--Otomatik artan kolonlara deÄŸer gÃ¶nderilmez
+--Tablodaki seÃ§ilen yahut bÃ¼tÃ¼n kolonlara gÃ¶nderileceÄŸini belirtip , gÃ¶ndermezsek hata verir
 
---Hatalý Yazým
+--HatalÄ± YazÄ±m
 INSERT Personeller(Adi,SoyAdi) VALUES ('Ekrem')
 
 
---[Pratik Kullaným]
-INSERT Personeller(Adi,SoyAdi) VALUES ('Özkan','Parlakkýlýç')
-INSERT Personeller(Adi,SoyAdi) VALUES ('Ekrem','Parlakkýlýç')
-INSERT Personeller(Adi,SoyAdi) VALUES ('Cavit','Parlakkýlýç')
+--[Pratik KullanÄ±m]
+INSERT Personeller(Adi,SoyAdi) VALUES ('Ã–zkan','ParlakkÄ±lÄ±Ã§')
+INSERT Personeller(Adi,SoyAdi) VALUES ('Ekrem','ParlakkÄ±lÄ±Ã§')
+INSERT Personeller(Adi,SoyAdi) VALUES ('Cavit','ParlakkÄ±lÄ±Ã§')
 
-INSERT Personeller(Adi,SoyAdi) VALUES ('Özkan','Parlakkýlýç'),
-									  ('Ekrem','Parlakkýlýç'),
-									  ('Cavit','Parlakkýlýç')
+INSERT Personeller(Adi,SoyAdi) VALUES ('Ã–zkan','ParlakkÄ±lÄ±Ã§'),
+									  ('Ekrem','ParlakkÄ±lÄ±Ã§'),
+									  ('Cavit','ParlakkÄ±lÄ±Ã§')
 
 
---[INSERT Komutu ile Select sorgusu sonucunu farklý tabloya kaydetme]
+--[INSERT Komutu ile Select sorgusu sonucunu farklÄ± tabloya kaydetme]
 INSERT OrnekPersoneller SELECT P.Adi,P.SoyAdi FROM Personeller P
 SELECT * FROM OrnekPersoneller
 
---[Select sorgusu sonucunu gelen verileri tablo oluþturarak kaydetme]
+--[Select sorgusu sonucunu gelen verileri tablo oluÅŸturarak kaydetme]
 SELECT P.Adi,P.SoyAdi,p.Ulke INTO OrnekPersoneller2 FROM Personeller P
 SELECT * FROM OrnekPersoneller2
 
---Bu yöntemle primary key foreign key oluþturulamaz sonradan eklenmek isterse eklenebilir manuel olarak.
+--Bu yÃ¶ntemle primary key foreign key oluÅŸturulamaz sonradan eklenmek isterse eklenebilir manuel olarak.
 
 
 --UPDATE
 
---[DÝKKAT UPDATE komutu tehlikelidir genellikle where þartý ile kullanýlýr]
+--[DÄ°KKAT UPDATE komutu tehlikelidir genellikle where ÅŸartÄ± ile kullanÄ±lÄ±r]
 UPDATE OrnekPersoneller SET Adi='Mehmet'
 
---[Where þartý ile yazmak]
+--[Where ÅŸartÄ± ile yazmak]
 UPDATE OrnekPersoneller SET Adi='Mehmet' WHERE Adi='Nancy'
 
---[Update Sorgusunda Join yapýlarý kullanýlarak Birden fazla Tabloda güncelleme yapmak]
+--[Update Sorgusunda Join yapÄ±larÄ± kullanÄ±larak Birden fazla Tabloda gÃ¼ncelleme yapmak]
 UPDATE Urunler SET UrunAdi = K.KategoriAdi FROM Urunler U INNER JOIN Kategoriler K ON U.KategoriID=K.KategoriID
 
---[UPDATE Sorgusunda Subquery ile güncelleme yapmak]
+--[UPDATE Sorgusunda Subquery ile gÃ¼ncelleme yapmak]
 UPDATE Urunler SET UrunAdi = (SELECT Adi FROM Personeller WHERE PersonelID = 3)
 
---[UPDATE Sorgusunda Top Keywordü ile Güncelleme yapmak]
+--[UPDATE Sorgusunda Top KeywordÃ¼ ile GÃ¼ncelleme yapmak]
 UPDATE Top(30) Urunler SET UrunAdi = 'x'
 
 --DELETE
 
 DELETE FROM Urunler
 
---[DÝKKAT DELETE komutu tehlikelidir genellikle where þartý ile kullanýlýr]
+--[DÄ°KKAT DELETE komutu tehlikelidir genellikle where ÅŸartÄ± ile kullanÄ±lÄ±r]
 
 DELETE FROM Urunler WHERE KategoriID = 3
---Delete sorgusuyla tablo içerisindeki tüm verileri silmeniz identity kolonunu sýfýrlamayacaktýr.
---Silme iþleminden sonra ilk eklenen veride kalýndýðý yerden id deðeri verecektir
+--Delete sorgusuyla tablo iÃ§erisindeki tÃ¼m verileri silmeniz identity kolonunu sÄ±fÄ±rlamayacaktÄ±r.
+--Silme iÅŸleminden sonra ilk eklenen veride kalÄ±ndÄ±ÄŸÄ± yerden id deÄŸeri verecektir
 
 
 ------------------------------------------- DML FINISH-----------------------------------------------------
@@ -591,7 +591,7 @@ DELETE FROM Urunler WHERE KategoriID = 3
 --UNION | UNION ALL
 
 --UNION
---Birden fazla select sorgusunun sonucunu tek seferde alt alta göstermemizi saðlar 
+--Birden fazla select sorgusunun sonucunu tek seferde alt alta gÃ¶stermemizi saÄŸlar 
 
 SELECT P.Adi,P.SoyAdi FROM Personeller P
 SELECT M.MusteriAdi,M.MusteriUnvani FROM Musteriler M
@@ -608,18 +608,18 @@ SELECT M.MusteriAdi,M.MusteriUnvani FROM Musteriler M
 UNION
 SELECT S.SevkAdi,S.SevkAdresi FROM Satislar S
 
---Joinler tablolarý yan yana , Union alt alta birleþtirir.Joinlerde belirli (iliþkisel) bir kolon üzerinden birleþtirme yapýlýrken,
---Union da böyle bir durum yoktur
+--Joinler tablolarÄ± yan yana , Union alt alta birleÅŸtirir.Joinlerde belirli (iliÅŸkisel) bir kolon Ã¼zerinden birleÅŸtirme yapÄ±lÄ±rken,
+--Union da bÃ¶yle bir durum yoktur
 
 --Dikkat etmemiz gerekenler
---Union sorgusunun sonucunda oluþan tablolnun kolon isimleri,en üstteki sorgunun kolon isimlerinden oluþur
---En üstteki sorgudan kaç kolon çekilmiþse alttaki sorgudan da o kadar kolon çekilmek zorundadýr
---En üstteki sorgudan çekilen kolonlarýn tipleriyle,alttaki sorgudan çekilen kolonlarýn tipleri ayný olmak zorundadýr
---Union tekrarlý kayýtlarý getirmez
+--Union sorgusunun sonucunda oluÅŸan tablolnun kolon isimleri,en Ã¼stteki sorgunun kolon isimlerinden oluÅŸur
+--En Ã¼stteki sorgudan kaÃ§ kolon Ã§ekilmiÅŸse alttaki sorgudan da o kadar kolon Ã§ekilmek zorundadÄ±r
+--En Ã¼stteki sorgudan Ã§ekilen kolonlarÄ±n tipleriyle,alttaki sorgudan Ã§ekilen kolonlarÄ±n tipleri aynÄ± olmak zorundadÄ±r
+--Union tekrarlÄ± kayÄ±tlarÄ± getirmez
 
 /*
-  Union'da Kullanýlan tablolara kolon eklenebilir, Dikkat etmemiz gereken nokta , yukarýdaki kurallar çerçevesinde aþaðýyad yukarýyada
-  ayný sayýda kolon eklenmesi gerekmektedir
+  Union'da KullanÄ±lan tablolara kolon eklenebilir, Dikkat etmemiz gereken nokta , yukarÄ±daki kurallar Ã§erÃ§evesinde aÅŸaÄŸÄ±yad yukarÄ±yada
+  aynÄ± sayÄ±da kolon eklenmesi gerekmektedir
 */
 
 SELECT P.Adi,P.SoyAdi,'Personel' AS POSITION FROM Personeller P
@@ -628,7 +628,7 @@ SELECT M.MusteriAdi,M.MusteriUnvani,'Musteri' FROM Musteriler M
 
 --UNION ALL
 
---UNION Tekrarlý kayýtlarý getirmezken UNION ALL getirir
+--UNION TekrarlÄ± kayÄ±tlarÄ± getirmezken UNION ALL getirir
 
 
 SELECT P.Adi,P.SoyAdi FROM Personeller P
@@ -639,7 +639,7 @@ SELECT P.Adi,P.SoyAdi FROM Personeller P
 
 --WITH ROLLUP
 
---GROUP BY ile gruplanmýþ veri kümesinde ara toplam alýnmasýný saðlar
+--GROUP BY ile gruplanmÄ±ÅŸ veri kÃ¼mesinde ara toplam alÄ±nmasÄ±nÄ± saÄŸlar
 
 SELECT SatisID,UrunID,SUM(Miktar) AS TOTAL FROM SatisDetaylari 
 GROUP BY SatisID,UrunID WITH ROLLUP
@@ -648,7 +648,7 @@ GROUP BY SatisID,UrunID WITH ROLLUP
 SELECT KategoriID,UrunID,SUM(TedarikciID) AS TOTAL FROM Urunler 
 GROUP BY KategoriID,UrunID WITH ROLLUP
 
---[Having þartýyla beraber with rollup]
+--[Having ÅŸartÄ±yla beraber with rollup]
 
 SELECT SatisID,UrunID,SUM(Miktar) AS TOTAL FROM SatisDetaylari 
 GROUP BY SatisID,UrunID WITH ROLLUP HAVING SUM(Miktar) > 100
@@ -656,7 +656,7 @@ GROUP BY SatisID,UrunID WITH ROLLUP HAVING SUM(Miktar) > 100
 ----------------------------------------WITH ROLLUP FINISH----------------------------------------
 
 --WITH CUBE
---GROUP BY ile gruplanmýþ veri kümesinde teker teker toplam alýnmasýný saðlar
+--GROUP BY ile gruplanmÄ±ÅŸ veri kÃ¼mesinde teker teker toplam alÄ±nmasÄ±nÄ± saÄŸlar
 
 SELECT SatisID,UrunID,SUM(Miktar) AS TOTAL FROM SatisDetaylari 
 GROUP BY SatisID,UrunID WITH CUBE
@@ -665,7 +665,7 @@ GROUP BY SatisID,UrunID WITH CUBE
 SELECT KategoriID,UrunID,SUM(TedarikciID) AS TOTAL FROM Urunler 
 GROUP BY KategoriID,UrunID WITH CUBE
 
---[Having þartýyla beraber with rollup]
+--[Having ÅŸartÄ±yla beraber with rollup]
 
 SELECT SatisID,UrunID,SUM(Miktar) AS TOTAL FROM SatisDetaylari 
 GROUP BY SatisID,UrunID WITH CUBE HAVING SUM(Miktar) > 100
@@ -674,31 +674,31 @@ GROUP BY SatisID,UrunID WITH CUBE HAVING SUM(Miktar) > 100
 
 --CASE - WHEN - ELSE -END
 
-----Personellerin isim ve soyisimlerinin yanýnda; UnvanEki 'Mr.' ise 'Erkek','Mrs.' ise 'Kadýn' yazsýn
+----Personellerin isim ve soyisimlerinin yanÄ±nda; UnvanEki 'Mr.' ise 'Erkek','Mrs.' ise 'KadÄ±n' yazsÄ±n
 
 SELECT Adi,SoyAdi,UnvanEki FROM Personeller
 
 SELECT Adi,SoyAdi,
 CASE
-WHEN UnvanEki = 'Mrs.' OR UnvanEki = 'Ms.' THEN 'Kadýn'
+WHEN UnvanEki = 'Mrs.' OR UnvanEki = 'Ms.' THEN 'KadÄ±n'
 WHEN UnvanEki = 'Mr.' THEN 'Erkek'
 ELSE UnvanEki 
 END
 FROM Personeller
 
 /*
-  Eðer ürünün birim fiyatý 0 - 50 arasý ise 'Çin Malý', 50 - 100 arasý ise 'Ucuz', 
-  100 - 200 arasý ise 'Normal' , 200'den büyük ise 'Pahalý' yazsýn 
+  EÄŸer Ã¼rÃ¼nÃ¼n birim fiyatÄ± 0 - 50 arasÄ± ise 'Ã‡in MalÄ±', 50 - 100 arasÄ± ise 'Ucuz', 
+  100 - 200 arasÄ± ise 'Normal' , 200'den bÃ¼yÃ¼k ise 'PahalÄ±' yazsÄ±n 
 */
 
 SELECT UrunID,BirimFiyati FROM Urunler
 
 SELECT UrunID,
 CASE
-WHEN BirimFiyati BETWEEN 0 AND 50 THEN 'Çin Malý' 
+WHEN BirimFiyati BETWEEN 0 AND 50 THEN 'Ã‡in MalÄ±' 
 WHEN BirimFiyati BETWEEN 50 AND 100 THEN 'Ucuz'
 WHEN BirimFiyati BETWEEN 100 AND 200 THEN 'Normal'
-WHEN BirimFiyati > 200 THEN 'Pahalý'
+WHEN BirimFiyati > 200 THEN 'PahalÄ±'
 ELSE 
 'Belirsiz'
 END AS FIYAT
@@ -738,7 +738,7 @@ AS
  
  ----------------------
 
- --Adý nancy olan personelin satýþlarýný tarihleriyle birlikte getir
+ --AdÄ± nancy olan personelin satÄ±ÅŸlarÄ±nÄ± tarihleriyle birlikte getir
  SELECT SatisID,SatisTarihi 
  FROM Satislar 
  WHERE PersonelID = (SELECT PersonelID FROM Personeller WHERE Adi = 'Nancy')
@@ -747,7 +747,7 @@ AS
  SELECT Adi FROM Personeller WHERE Adi = (SELECT Adi FROM Personeller WHERE UnvanEki = 'Dr.')
 
  --[Dikkat!!!]
- --Sub olan sorgunun dçnüþ deðeri bir olmalýdýr birden fazla kayýt getiriyorsa alt sorgu olamaz
+ --Sub olan sorgunun dÃ§nÃ¼ÅŸ deÄŸeri bir olmalÄ±dÄ±r birden fazla kayÄ±t getiriyorsa alt sorgu olamaz
 
 
  --------------------------------------------SUBQUERY FINISH-----------------------------------------------
@@ -772,27 +772,27 @@ AS
 
  --Identity yi 0 lar
 
- --Kisiler Tablosu temizlenir , id 0 lanýr ve tablonun iskeleti silinmez
+ --Kisiler Tablosu temizlenir , id 0 lanÄ±r ve tablonun iskeleti silinmez
  TRUNCATE TABLE Kisiler
 
 ------------------------------------- TRUNCATE TABLE FINISH ---------------------------------
 
 
 -- @@IDENTITY 
---En son insert yapýlan tablodaki verinin id sini yazdýrýr
+--En son insert yapÄ±lan tablodaki verinin id sini yazdÄ±rÄ±r
 INSERT Kategoriler(KategoriAdi,Tanimi) VALUES('X','X Kategorisi')
 SELECT @@IDENTITY 
 
 ------------------------------------- @@IDENTITY FINISH ---------------------------------
 
 --@@ROWCOUNT 
---Sorgudan kaç satýr etkilenmiþtir onun bilgisini verir
+--Sorgudan kaÃ§ satÄ±r etkilenmiÅŸtir onun bilgisini verir
 DELETE FROM Personeller WHERE PersonelID = 10000000
 SELECT @@ROWCOUNT 
 
 ------------------------------------- @@ROWCOUNT  FINISH ---------------------------------
 
---Identity kolonuna müdahale etme
+--Identity kolonuna mÃ¼dahale etme
 DBCC CHECKIDENT(Personeller, RESEED, 1)
 
 -------------------------------------------------------------------------------------------
@@ -816,8 +816,8 @@ SELECT MusteriAdi, COALESCE(Bolge,'Bolge Bilinmiyor') FROM Musteriler
 --ISNULL ile null control
 SELECT MusteriAdi, ISNULL(Bolge,'Bolge Bilinmiyor') FROM Musteriler
 
---NULLIF Fonksiyonu ile null kontrolü
---Fonksiyona verilen kolon, ikinci parametre verilen deðere eþitse o kolonu Null olarak getirir
+--NULLIF Fonksiyonu ile null kontrolÃ¼
+--Fonksiyona verilen kolon, ikinci parametre verilen deÄŸere eÅŸitse o kolonu Null olarak getirir
 
 SELECT NULLIF(0,0)
 SELECT NULLIF(0,2)
@@ -825,14 +825,14 @@ SELECT NULLIF(0,2)
 SELECT HedefStokDuzeyi FROM Urunler
 SELECT AVG(HedefStokDuzeyi) FROM Urunler
 
---Hedef stok düzeyi 0 olmayan ürünlerin ortalamasý nedir ? 
+--Hedef stok dÃ¼zeyi 0 olmayan Ã¼rÃ¼nlerin ortalamasÄ± nedir ? 
 SELECT AVG(HedefStokDuzeyi) FROM Urunler WHERE HedefStokDuzeyi <> 0
 SELECT AVG(NULLIF(HedefStokDuzeyi,0)) FROM Urunler
 
 --------------------------------------------------NULLIF FINISH------------------------------------------------
 
 
---T-SQL ile VT deki tablolarý listeleme
+--T-SQL ile VT deki tablolarÄ± listeleme
 
 SELECT * FROM sys.tables
 -- ya da
@@ -841,7 +841,7 @@ SELECT * FROM sysobjects WHERE xtype = 'U'
 
 --------------------------------------------------------------------------------------------------------------
 
---T-SQL ile PK olup olmadýðýný kontrol etme
+--T-SQL ile PK olup olmadÄ±ÄŸÄ±nÄ± kontrol etme
 
 SELECT OBJECTPROPERTY(OBJECT_ID('Personeller'),'TableHasPrimaryKey')
 
@@ -849,16 +849,16 @@ SELECT OBJECTPROPERTY(OBJECT_ID('Personeller'),'TableHasPrimaryKey')
 
 -- DDL (Data Definition Language)
 /*
-  T-SQL'de VT nesnelerini yaratmamýzý saðlayan ve bu nesnelerin üzerinde deðiþiklik yapmamýzý
-  ve silmemizi saðlayan yapýlar bu baþlýk altýnda simgelenmektedir
+  T-SQL'de VT nesnelerini yaratmamÄ±zÄ± saÄŸlayan ve bu nesnelerin Ã¼zerinde deÄŸiÅŸiklik yapmamÄ±zÄ±
+  ve silmemizi saÄŸlayan yapÄ±lar bu baÅŸlÄ±k altÄ±nda simgelenmektedir
 */
 
 --CREATE , ALTER, DROP
 
 -- ===CREATE=== 
---VT nesnesi oluþturmamýzý saðlar. (Database,Table,View,Trigger,StoredProc v.s)
+--VT nesnesi oluÅŸturmamÄ±zÄ± saÄŸlar. (Database,Table,View,Trigger,StoredProc v.s)
 
---CREATE ile VT oluþturma
+--CREATE ile VT oluÅŸturma
 
 CREATE DATABASE OrnekVT2
 
@@ -871,12 +871,12 @@ ON
 	FILEGROWTH = 3
 )
 
---NAME : Oluþturulacak VT nin fiziksel ismini belirliyoruz.
---FILENAME : Oluþturulacak VT dosyasýnýn fiziksel dizinini belirtiyoruz.
---SIZE : VT nin baþlangýç boyutunu mb cinsinden ayarlýyoruz.
---FILEGROWTH : VT boyutunu,baþlangýç boyutunu geçtiði durumda boyutun ne kadar artmasý gerektiðini mb cinsinden belirtiyoruz
+--NAME : OluÅŸturulacak VT nin fiziksel ismini belirliyoruz.
+--FILENAME : OluÅŸturulacak VT dosyasÄ±nÄ±n fiziksel dizinini belirtiyoruz.
+--SIZE : VT nin baÅŸlangÄ±Ã§ boyutunu mb cinsinden ayarlÄ±yoruz.
+--FILEGROWTH : VT boyutunu,baÅŸlangÄ±Ã§ boyutunu geÃ§tiÄŸi durumda boyutun ne kadar artmasÄ± gerektiÄŸini mb cinsinden belirtiyoruz
 
---LOG dosyasýný oluþturma
+--LOG dosyasÄ±nÄ± oluÅŸturma
 CREATE DATABASE OrnekVT2
 ON
 (
@@ -894,7 +894,7 @@ ON
 	FILEGROWTH = 3
 )
 
---CREATE ile tablo oluþturma
+--CREATE ile tablo oluÅŸturma
 USE OrnekVT2
 CREATE TABLE OrnekTablo
 (
@@ -903,9 +903,9 @@ CREATE TABLE OrnekTablo
 	Kolon3 MONEY
 )
 
---Eðer kolon isminde boþluk varsa köþeli parantezle yaz exp = [KOLON 1]
+--EÄŸer kolon isminde boÅŸluk varsa kÃ¶ÅŸeli parantezle yaz exp = [KOLON 1]
 
--- =Kolona Primary Key ve Ýdentity özelliði kazandýrma
+-- =Kolona Primary Key ve Ä°dentity Ã¶zelliÄŸi kazandÄ±rma
 CREATE TABLE OrnekTablo2
 (
 	ID INT PRIMARY KEY IDENTITY(1,1),
@@ -914,9 +914,9 @@ CREATE TABLE OrnekTablo2
 )
 
 -- ===ALTER=== 
---  VT nesnesi üzerinde deðiþiklik yapmamýzý saðlar. 
+--  VT nesnesi Ã¼zerinde deÄŸiÅŸiklik yapmamÄ±zÄ± saÄŸlar. 
 
--- ===ALTER ile VT güncelleme
+-- ===ALTER ile VT gÃ¼ncelleme
 
 ALTER DATABASE OrnekVT2
 MODIFY FILE
@@ -930,7 +930,7 @@ USE OrnekVT2
 ALTER TABLE OrnekTablo
 ADD Kolon4 NVARCHAR(MAX)
 
--- ALTER ile tablodaki kolonu güncelleme
+-- ALTER ile tablodaki kolonu gÃ¼ncelleme
 
 ALTER TABLE OrnekTablo
 ALTER COLUMN Kolon4 INT
@@ -943,22 +943,22 @@ DROP COLUMN Kolon4
 -- ALTER ile tabloya constraint ekleme
 
 ALTER TABLE OrnekTablo
-ADD CONSTRAINT OrnekConstraint DEFAULT 'Boþ' FOR Kolon2
+ADD CONSTRAINT OrnekConstraint DEFAULT 'BoÅŸ' FOR Kolon2
 
 -- ALTER ile tablodaki constrainti silme
 
 ALTER TABLE OrnekTablo
 DROP CONSTRAINT OrnekConstraint 
 
--- SP_RENAME ile Tablo adý güncelleme
+-- SP_RENAME ile Tablo adÄ± gÃ¼ncelleme
 SP_RENAME 'OrnekTablo','OrnekTabloYeni'
 
--- SP_RENAME ile Kolon güncelleme
+-- SP_RENAME ile Kolon gÃ¼ncelleme
 SP_RENAME 'OrnekTablo.Kolon1','Kolon12','COLUMN'
 
 -- ===DROP===
 
--- VT yi silmemizi saðlar. 
+-- VT yi silmemizi saÄŸlar. 
 
 DROP TABLE OrnekTablo2
 DROP DATABASE OrnekVT2
@@ -968,7 +968,7 @@ DROP DATABASE OrnekVT2
 
 --CONSTRAITS (KISITLAYICILAR)
 
---Constraintler sayesinde tablolar üzerinde istediðimiz þartlar ve durumlara göre kýsýtlama yapabiliyoruz.
+--Constraintler sayesinde tablolar Ã¼zerinde istediÄŸimiz ÅŸartlar ve durumlara gÃ¶re kÄ±sÄ±tlama yapabiliyoruz.
 
 --1.DEFAULT CONSTRAINT
 --2.CHECK CONSTRAINT
@@ -978,7 +978,7 @@ DROP DATABASE OrnekVT2
 
 
 -- === DEFAULT CONSTRAINT ===
---Default Constraintler sayesinde kolona bir deðer girilmediði takdirde varsayýlan olarak ne girilmesi gerektiðini belirtebiliyoruz
+--Default Constraintler sayesinde kolona bir deÄŸer girilmediÄŸi takdirde varsayÄ±lan olarak ne girilmesi gerektiÄŸini belirtebiliyoruz
 
 CREATE TABLE OrnekTablo2
 (
@@ -988,52 +988,52 @@ CREATE TABLE OrnekTablo2
 )
 
 ALTER TABLE OrnekTablo
-ADD CONSTRAINT Kolon1Constraint DEFAULT 'Boþ' FOR Kolon1
+ADD CONSTRAINT Kolon1Constraint DEFAULT 'BoÅŸ' FOR Kolon1
 
 ALTER TABLE OrnekTablo
 ADD CONSTRAINT Kolon2Constraint DEFAULT -1 FOR Kolon2
 
 
 -- === CHECK CONSTRAINT ===
---Bir kolona girilecek olan verinin belirli bir þarta uymasýný zorunlu tutar.
+--Bir kolona girilecek olan verinin belirli bir ÅŸarta uymasÄ±nÄ± zorunlu tutar.
 
 ALTER TABLE OrnekTablo
 ADD CONSTRAINT Kolon2Kontrol CHECK ((Kolon2 * 5) % 2 = 0)
 
--- DÝKKAT!!!!
+-- DÄ°KKAT!!!!
 /*
-  Check constraint oluþturulmadan önce ilgili tabloda þarta aykýrý deðerler varsa constraint oluþturulmayacaktýr ! ! !
-  Ancak önceki kayýtlarý görmezden gelip genede Check constraint uygulamak istiyorsak "With Nocheck komutu kullanýlýr
+  Check constraint oluÅŸturulmadan Ã¶nce ilgili tabloda ÅŸarta aykÄ±rÄ± deÄŸerler varsa constraint oluÅŸturulmayacaktÄ±r ! ! !
+  Ancak Ã¶nceki kayÄ±tlarÄ± gÃ¶rmezden gelip genede Check constraint uygulamak istiyorsak "With Nocheck komutu kullanÄ±lÄ±r
 */
 
 ALTER TABLE OrnekTablo
 WITH NOCHECK ADD CONSTRAINT Kolon2Kontrol CHECK ((Kolon2 * 5) % 2 = 0)
 
 -- === PRIMARY KEY CONSTRAINT ===
--- Primary Key Constraint ile; o kolona eklenen primary key ile, baþka tablolarda 
--- Foreign Key oluþturarak iliþki kurmamýz mümkün olur.
--- Bunun yanýnda o kolonun taþýdýðý verinin tekil olacaðý da garanti edilmiþ olur. 
--- Primary Key constraint ile ayrýca CLUSTERED index oluþturulmuþta olur,
+-- Primary Key Constraint ile; o kolona eklenen primary key ile, baÅŸka tablolarda 
+-- Foreign Key oluÅŸturarak iliÅŸki kurmamÄ±z mÃ¼mkÃ¼n olur.
+-- Bunun yanÄ±nda o kolonun taÅŸÄ±dÄ±ÄŸÄ± verinin tekil olacaÄŸÄ± da garanti edilmiÅŸ olur. 
+-- Primary Key constraint ile ayrÄ±ca CLUSTERED index oluÅŸturulmuÅŸta olur,
 
--- DÝKKAT!!!
--- PK Constraint Kullanýlan kolon PK özelliðine sahip olmamalýdýr
+-- DÄ°KKAT!!!
+-- PK Constraint KullanÄ±lan kolon PK Ã¶zelliÄŸine sahip olmamalÄ±dÄ±r
 
 ALTER TABLE OrnekTablo
 ADD CONSTRAINT PrimaryId PRIMARY KEY (ID)
 
 -- === UNIQUE CONSTRAINT ===
---Unique constraintlerin tek amacý,Belirttiðimiz deðerlerin tekil olmasýdýr
+--Unique constraintlerin tek amacÄ±,BelirttiÄŸimiz deÄŸerlerin tekil olmasÄ±dÄ±r
 
 ALTER TABLE OrnekTablo
 ADD CONSTRAINT OrnekTabloUnique UNIQUE (Kolon2)
 
---"Kolon2" kolonuna unique constraint verilerek tekil hale getirilmiþtir.Bundan sonra iki tane ayný veriden kayýt yapýlamaz
+--"Kolon2" kolonuna unique constraint verilerek tekil hale getirilmiÅŸtir.Bundan sonra iki tane aynÄ± veriden kayÄ±t yapÄ±lamaz
 
 
 -- === FOREIGN KEY CONSTRAINT===
 /*
-  Tablolarýn birbiri arasýnda iliþki kurmasýný saðlar.Bu iliþki neticesinde; foreign key olan kolondaki karþýlýðýnýn boþa 
-  düþmemesi için primary key kolonu olan tablodan veri silinmesi, güncellenmesini engeller
+  TablolarÄ±n birbiri arasÄ±nda iliÅŸki kurmasÄ±nÄ± saÄŸlar.Bu iliÅŸki neticesinde; foreign key olan kolondaki karÅŸÄ±lÄ±ÄŸÄ±nÄ±n boÅŸa 
+  dÃ¼ÅŸmemesi iÃ§in primary key kolonu olan tablodan veri silinmesi, gÃ¼ncellenmesini engeller
 */
 
 USE OrnekVT
@@ -1057,11 +1057,11 @@ CREATE TABLE Dersler
 ALTER TABLE Ogrenciler
 ADD CONSTRAINT ForeignKeyOgrenciDers FOREIGN KEY(DersId) REFERENCES Dersler(DersId)
 
---Þu durumda,delete ve update iþlemlerinden kolondaki veriler etkilenmez
---Davranýþýný deðiþtirmek için aþaðýdaki komutlar kullanýlýr
+--Åžu durumda,delete ve update iÅŸlemlerinden kolondaki veriler etkilenmez
+--DavranÄ±ÅŸÄ±nÄ± deÄŸiÅŸtirmek iÃ§in aÅŸaÄŸÄ±daki komutlar kullanÄ±lÄ±r
 
 -- == Cascade 
--- Ana tablodaki kayýt silindiðinde ya da güncellediðinde, iliþkili kolondaki karþýlýðýnda otomatik olarak silinir ya da güncellenir 
+-- Ana tablodaki kayÄ±t silindiÄŸinde ya da gÃ¼ncellediÄŸinde, iliÅŸkili kolondaki karÅŸÄ±lÄ±ÄŸÄ±nda otomatik olarak silinir ya da gÃ¼ncellenir 
 
 ALTER TABLE Ogrenciler
 ADD CONSTRAINT ForeignKeyOgrenciDers FOREIGN KEY(DersId) REFERENCES Dersler(DersId)
@@ -1069,7 +1069,7 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 
 -- == Set Null 
--- Ana tablodaki kayýt silindiðinde ya da güncellediðinde, iliþkili kolondaki karþýlýðýnda "Null" deðer basýlýr
+-- Ana tablodaki kayÄ±t silindiÄŸinde ya da gÃ¼ncellediÄŸinde, iliÅŸkili kolondaki karÅŸÄ±lÄ±ÄŸÄ±nda "Null" deÄŸer basÄ±lÄ±r
 
 ALTER TABLE Ogrenciler
 ADD CONSTRAINT ForeignKeyOgrenciDers FOREIGN KEY(DersId) REFERENCES Dersler(DersId)
@@ -1078,8 +1078,8 @@ ON UPDATE SET NULL
 
 -- == Set Default 
 /*
-   Ana tablodaki kayýt silindiðinde ya da güncellediðinde, iliþkili kolondaki karþýlýðýnda o kolonun default deðer basýlýr
-   Bu default deðer dediðimiz default tipte bir constrainttir.Bunu kendimiz oluþturabiliriz.
+   Ana tablodaki kayÄ±t silindiÄŸinde ya da gÃ¼ncellediÄŸinde, iliÅŸkili kolondaki karÅŸÄ±lÄ±ÄŸÄ±nda o kolonun default deÄŸer basÄ±lÄ±r
+   Bu default deÄŸer dediÄŸimiz default tipte bir constrainttir.Bunu kendimiz oluÅŸturabiliriz.
 */
 
 ALTER TABLE Ogrenciler
@@ -1090,13 +1090,13 @@ ADD CONSTRAINT ForeignKeyOgrenciDers FOREIGN KEY(DersId) REFERENCES Dersler(Ders
 ON DELETE SET DEFAULT
 ON UPDATE SET DEFAULT
 
---Bu ayarlar verildiði takdirde "no action" özelliði geçerlidir 
+--Bu ayarlar verildiÄŸi takdirde "no action" Ã¶zelliÄŸi geÃ§erlidir 
 
 --------------------------------------------CONSTRAINT FINISH-------------------------------------------
 
---VARIABLES(Deðiþkenler)
+--VARIABLES(DeÄŸiÅŸkenler)
 
---DECLARE Keywördü ile tanýmlanýrlar
+--DECLARE KeywÃ¶rdÃ¼ ile tanÄ±mlanÄ±rlar
 
 --EXAMPLES
 
@@ -1115,26 +1115,26 @@ DECLARE @tarih DATETIME
 SET @tarih = GETDATE()
 
 
--- Deðiþken deðeri okuma
+-- DeÄŸiÅŸken deÄŸeri okuma
 
 DECLARE @y INT
 SET @y = 3
 PRINT @y
 SELECT @Y
 
--- Sorgu sonucu gelen verileri deðiþkenle elde etme
+-- Sorgu sonucu gelen verileri deÄŸiÅŸkenle elde etme
 
 USE Northwind
 DECLARE @Adi NVARCHAR(MAX),@SoyAdi NVARCHAR(MAX)
 SELECT  @Adi=Adi,@SoyAdi=SoyAdi FROM Personeller WHERE PersonelId = 1
 SELECT  @Adi,@SoyAdi
 
---1.Sorgu sonucu gelen satýr sayýsý 1 adet olmalýdýr
---2.Kolonlardaki verilerin tipleri ne ise o verileri temsil edecek deðiþkenlerin tipleride benzer olmalýdýr
+--1.Sorgu sonucu gelen satÄ±r sayÄ±sÄ± 1 adet olmalÄ±dÄ±r
+--2.Kolonlardaki verilerin tipleri ne ise o verileri temsil edecek deÄŸiÅŸkenlerin tipleride benzer olmalÄ±dÄ±r
 
 -----------------------------------------------VARIABLES FINISH--------------------------------------------
 
---Batch Kavramý Go
+--Batch KavramÄ± Go
 
 CREATE DATABASE OrnekVT2
 GO
@@ -1148,14 +1148,14 @@ CREATE TABLE OrnekTablo1
 
 ------------------------------------------------------------------------------------------------------------
 
--- If Yapýsý 
+-- If YapÄ±sÄ± 
 
--- = : Eþitse
--- <> : Eþit deðilse
--- < : Küçükse
--- > : Büyükse
+-- = : EÅŸitse
+-- <> : EÅŸit deÄŸilse
+-- < : KÃ¼Ã§Ã¼kse
+-- > : BÃ¼yÃ¼kse
 
---Tek satýrlýk çalýþma
+--Tek satÄ±rlÄ±k Ã§alÄ±ÅŸma
 
 DECLARE @Isim NVARCHAR(50)
 SET @Isim = 'Ozkan'
@@ -1163,28 +1163,28 @@ SET @Isim = 'Ozkan'
 IF @Isim = 'Ozkan'
    PRINT 'Evet'
 ELSE
-   PRINT 'Hayýr'
+   PRINT 'HayÄ±r'
 
 
--- BEGIN END yapýsý(SCOPE)
+-- BEGIN END yapÄ±sÄ±(SCOPE)
 
 DECLARE @sayi1 INT = 3
 DECLARE @sayi2 INT = 5
 
 IF @sayi1 < @sayi2
    BEGIN
-		PRINT 'Evet sayi1 sayi2 den küçüktür'
-		SELECT @sayi1 [Sayý 1],@sayi2 [Sayý 2]
+		PRINT 'Evet sayi1 sayi2 den kÃ¼Ã§Ã¼ktÃ¼r'
+		SELECT @sayi1 [SayÄ± 1],@sayi2 [SayÄ± 2]
    END
 ELSE
     BEGIN
-		PRINT 'Hayýr sayi1 sayi2 den küçük deðildir'
-		SELECT @sayi1 [Sayý 1],@sayi2 [Sayý 2]
+		PRINT 'HayÄ±r sayi1 sayi2 den kÃ¼Ã§Ã¼k deÄŸildir'
+		SELECT @sayi1 [SayÄ± 1],@sayi2 [SayÄ± 2]
     END
 
 
---Örnek 1 
---Müþteriler tablosunda Amerikalý(USA) müþteri var mý?
+--Ã–rnek 1 
+--MÃ¼ÅŸteriler tablosunda AmerikalÄ±(USA) mÃ¼ÅŸteri var mÄ±?
 
 USE Northwind
 
@@ -1193,36 +1193,36 @@ SELECT * FROM Musteriler WHERE Ulke = 'USA'
 IF @@ROWCOUNT > 0
    PRINT 'Evet'
 ELSE
-   PRINT 'Hayýr'
+   PRINT 'HayÄ±r'
 
---Örnek 2
---Adý 'Özkan' SoyAdý 'Parlakkýlýç'olan personel var mý ? Varsa evet var desin. Yoksa Kaydetsin.
+--Ã–rnek 2
+--AdÄ± 'Ã–zkan' SoyAdÄ± 'ParlakkÄ±lÄ±Ã§'olan personel var mÄ± ? Varsa evet var desin. Yoksa Kaydetsin.
 
-DECLARE @Adi NVARCHAR(MAX) = 'Özkan',@SoyAdi NVARCHAR(MAX) = 'Parlakkýlýç'
+DECLARE @Adi NVARCHAR(MAX) = 'Ã–zkan',@SoyAdi NVARCHAR(MAX) = 'ParlakkÄ±lÄ±Ã§'
 SELECT * FROM Personeller WHERE Adi = @Adi AND SoyAdi = @SoyAdi
 
 IF @@ROWCOUNT > 0
 	PRINT 'Evet var'
 ELSE
 	BEGIN 
-		PRINT 'Hayýr yok'
+		PRINT 'HayÄ±r yok'
 		INSERT Personeller(Adi,SoyAdi) VALUES (@Adi,@SoyAdi) 
 	END
 
 
 
--- IF - ELSE IF - ELSE Yapýsý
+-- IF - ELSE IF - ELSE YapÄ±sÄ±
 
 DECLARE @Yas INT = 25
 
 IF @Yas>25
-	PRINT 'Yaþýnýz 25 den büyük'
+	PRINT 'YaÅŸÄ±nÄ±z 25 den bÃ¼yÃ¼k'
 ELSE IF @Yas BETWEEN 15 AND 25
-	PRINT 'Yaþýnýz 15 - 20 arasýnda'
+	PRINT 'YaÅŸÄ±nÄ±z 15 - 20 arasÄ±nda'
 ELSE IF @Yas BETWEEN 5 AND 15
-	PRINT 'Yaþýnýz 5 - 15 arasýnda'
+	PRINT 'YaÅŸÄ±nÄ±z 5 - 15 arasÄ±nda'
 ELSE
-	PRINT 'Yaþýnýz 5 den küçük'
+	PRINT 'YaÅŸÄ±nÄ±z 5 den kÃ¼Ã§Ã¼k'
 
 
 ------------------------------------------------ IF FINISH ----------------------------------------------
@@ -1278,50 +1278,50 @@ WHILE @Sayac < 100
 
 ------------------------------------------- BREAK AND CONTINUE FINISH ----------------------------------------
 
--- Geçici tablolar - Temporary Tables
+-- GeÃ§ici tablolar - Temporary Tables
 /*
-   Genellikle bir SQL Server üzerinde farklý lokasyonlarda birden fazla kiþi çalýþtýðý durumlarda ya da verilerin test amaçlý geçici bir yerlerde
-   tutulmasý, iþlenmesi amacýyla kullanýlan yapýlardýr.
+   Genellikle bir SQL Server Ã¼zerinde farklÄ± lokasyonlarda birden fazla kiÅŸi Ã§alÄ±ÅŸtÄ±ÄŸÄ± durumlarda ya da verilerin test amaÃ§lÄ± geÃ§ici bir yerlerde
+   tutulmasÄ±, iÅŸlenmesi amacÄ±yla kullanÄ±lan yapÄ±lardÄ±r.
 */
 
--- Bilinen tablo yapýsýnýn aynýsýný saðlarlar. Tek farklarý fiziksel olarak oluþmazlar. Sadece bellekte geçici oluþurlar.
+-- Bilinen tablo yapÄ±sÄ±nÄ±n aynÄ±sÄ±nÄ± saÄŸlarlar. Tek farklarÄ± fiziksel olarak oluÅŸmazlar. Sadece bellekte geÃ§ici oluÅŸurlar.
 
--- Select, Update vs. Yapýlabilir. Ýliþki kurulabilir
+-- Select, Update vs. YapÄ±labilir. Ä°liÅŸki kurulabilir
 
--- Sunucu kapatýldýðýnda ya da oturum sahibi oturumu kapattýðýnda bellekten silinirler
+-- Sunucu kapatÄ±ldÄ±ÄŸÄ±nda ya da oturum sahibi oturumu kapattÄ±ÄŸÄ±nda bellekten silinirler
 
 -- #Bir tabloyu fiziksel olarak kopyalama
 
 SELECT * INTO GeciciPersoneller from Personeller
--- Bu þekildeki bir kullanýmda sadece PK ve FK constraintler oluþturulmazlar.
--- Geri kalan her þey fiziksel olarak oluþturulur.
+-- Bu ÅŸekildeki bir kullanÄ±mda sadece PK ve FK constraintler oluÅŸturulmazlar.
+-- Geri kalan her ÅŸey fiziksel olarak oluÅŸturulur.
 
--- #Bir tabloyu # ifadesi ile belleðe geçici olarak kopyalama
+-- #Bir tabloyu # ifadesi ile belleÄŸe geÃ§ici olarak kopyalama
 SELECT * INTO #GeciciPersoneller from Personeller
 
 SELECT * FROM #GeciciPersoneller
-INSERT #GeciciPersoneller(Adi,SoyAdi) VALUES ('Özkan','Parlakkýlýç')
+INSERT #GeciciPersoneller(Adi,SoyAdi) VALUES ('Ã–zkan','ParlakkÄ±lÄ±Ã§')
 UPDATE #GeciciPersoneller SET Adi='Hilmi', SoyAdi='Celayir' WHERE PersonelID = 5
 DELETE FROM #GeciciPersoneller  WHERE PersonelID = 11
 
--- Geçici tablo üzerinde her türlü iþlemi yapabiliyoruz.
--- # ile oluþturulan tablolar, o an SQL Serverda oturum açmýþ kiþinin sunucu belleðinde oluþur.
--- Sadece oturum açan þahýs kullanýlabilir
--- Eðer oturum açan þahýs SQL Server dan disconnect olursa bu tablo bellekten silinir
+-- GeÃ§ici tablo Ã¼zerinde her tÃ¼rlÃ¼ iÅŸlemi yapabiliyoruz.
+-- # ile oluÅŸturulan tablolar, o an SQL Serverda oturum aÃ§mÄ±ÅŸ kiÅŸinin sunucu belleÄŸinde oluÅŸur.
+-- Sadece oturum aÃ§an ÅŸahÄ±s kullanÄ±labilir
+-- EÄŸer oturum aÃ§an ÅŸahÄ±s SQL Server dan disconnect olursa bu tablo bellekten silinir
 
--- #Bir tabloyu ## ifadesi ile belleðe geçici olarak kopyalama
+-- #Bir tabloyu ## ifadesi ile belleÄŸe geÃ§ici olarak kopyalama
 SELECT * INTO ##GeciciPersoneller from Personeller
 
 SELECT * FROM ##GeciciPersoneller
-INSERT ##GeciciPersoneller(Adi,SoyAdi) VALUES ('Özkan','Parlakkýlýç')
+INSERT ##GeciciPersoneller(Adi,SoyAdi) VALUES ('Ã–zkan','ParlakkÄ±lÄ±Ã§')
 UPDATE ##GeciciPersoneller SET Adi='Hilmi', SoyAdi='Celayir' WHERE PersonelID = 5
 DELETE FROM ##GeciciPersoneller  WHERE PersonelID = 11
 
 
--- ## ile oluþturulan tablolar, o an SQL Serverda oturum açmýþ kiþinin sunucu belleðinde oluþur.
--- Bu tabloyu oturum açan þahýs ve onun SQL Serverýnda dýþardan ulþan 3.þahýslar kullanabilir
--- Eðer oturum açan þahýs SQL Server dan disconnect olursa bu tablo bellekten silinir
--- Diðer bütün özellikleri # ile oluþturulan tablolarla aynýdýr
+-- ## ile oluÅŸturulan tablolar, o an SQL Serverda oturum aÃ§mÄ±ÅŸ kiÅŸinin sunucu belleÄŸinde oluÅŸur.
+-- Bu tabloyu oturum aÃ§an ÅŸahÄ±s ve onun SQL ServerÄ±nda dÄ±ÅŸardan ulÅŸan 3.ÅŸahÄ±slar kullanabilir
+-- EÄŸer oturum aÃ§an ÅŸahÄ±s SQL Server dan disconnect olursa bu tablo bellekten silinir
+-- DiÄŸer bÃ¼tÃ¼n Ã¶zellikleri # ile oluÅŸturulan tablolarla aynÄ±dÄ±r
 
 
 --------------------------------------- Temporary Tables Finish ----------------------------------------
@@ -1330,9 +1330,9 @@ DELETE FROM ##GeciciPersoneller  WHERE PersonelID = 11
 -- Uniqueidentifier Veri tipi
 
 -- int, varchar vs. gibi bir veri tipidir
--- Aldýðý deðer, rakamlar ve harflerden oluþan çok büyük bir sayýdýr
--- Bundan dolayý bu kolona ayný deðerin birden fazla gelmesi neredeyse imkansýzdýr
--- O yüzden tekil veri oluþturmak için kullanýlýr 
+-- AldÄ±ÄŸÄ± deÄŸer, rakamlar ve harflerden oluÅŸan Ã§ok bÃ¼yÃ¼k bir sayÄ±dÄ±r
+-- Bundan dolayÄ± bu kolona aynÄ± deÄŸerin birden fazla gelmesi neredeyse imkansÄ±zdÄ±r
+-- O yÃ¼zden tekil veri oluÅŸturmak iÃ§in kullanÄ±lÄ±r 
 
 CREATE TABLE OrnekTablo
 (
@@ -1352,29 +1352,29 @@ INSERT OrnekTablo VALUES('x','y',NEWID())
 
 --VIEW
 
--- === Kullaným Amacý
+-- === KullanÄ±m AmacÄ±
 
--- Genellikle karmaþýk sorgularýn tek bir sorgu üzerinden çalýþtýrýlabilmesidir
--- Bu amaçla raporlama iþlemlerinde kullanýlabilir
+-- Genellikle karmaÅŸÄ±k sorgularÄ±n tek bir sorgu Ã¼zerinden Ã§alÄ±ÅŸtÄ±rÄ±labilmesidir
+-- Bu amaÃ§la raporlama iÅŸlemlerinde kullanÄ±labilir
 /*
-   Ayný zamanda güvenlik ihtiyacý olduðu durumlarda herhangi bir sorgunun 2. - 3. þahýslardan
-   gizlenmesi amacýylada kullanýlýrlar
+   AynÄ± zamanda gÃ¼venlik ihtiyacÄ± olduÄŸu durumlarda herhangi bir sorgunun 2. - 3. ÅŸahÄ±slardan
+   gizlenmesi amacÄ±ylada kullanÄ±lÄ±rlar
 */
 
--- === Genel özellikleri ===
+-- === Genel Ã¶zellikleri ===
 
--- Herhangi bir sorgunun sonucu tablo olarak ele alýp, ondan sorgu çekilebilmesini saðlarlar
--- INSERT , UPDATE ve DELETE yapabilirler. Bu iþlemleri fiziksel tabloya yansýtýrlar. ***Önemli
--- VIEW yapýlarý fiziksel olarak oluþturulan sorgulardýr
--- VIEW yapýlarý fiziksel sorgulardan daha yavaþ çalýþýrlar
+-- Herhangi bir sorgunun sonucu tablo olarak ele alÄ±p, ondan sorgu Ã§ekilebilmesini saÄŸlarlar
+-- INSERT , UPDATE ve DELETE yapabilirler. Bu iÅŸlemleri fiziksel tabloya yansÄ±tÄ±rlar. ***Ã–nemli
+-- VIEW yapÄ±larÄ± fiziksel olarak oluÅŸturulan sorgulardÄ±r
+-- VIEW yapÄ±larÄ± fiziksel sorgulardan daha yavaÅŸ Ã§alÄ±ÅŸÄ±rlar
 
 -- Dikkat ! ! !
--- VT elemanlarý CREATE komutuyla oluþturuyorduk. VIEW yapýsýda bir VT yapýsý olduðu için oda CREATE komutuyla oluþturulur
+-- VT elemanlarÄ± CREATE komutuyla oluÅŸturuyorduk. VIEW yapÄ±sÄ±da bir VT yapÄ±sÄ± olduÄŸu iÃ§in oda CREATE komutuyla oluÅŸturulur
 
 CREATE VIEW vw_Gotur
 AS
 
-SELECT P.Adi + ' ' + P.SoyAdi [Adý Soyadý] , K.KategoriAdi [Kategori Adý],COUNT(S.SatisID) [Toplam Satýþ]
+SELECT P.Adi + ' ' + P.SoyAdi [AdÄ± SoyadÄ±] , K.KategoriAdi [Kategori AdÄ±],COUNT(S.SatisID) [Toplam SatÄ±ÅŸ]
 FROM Personeller P INNER JOIN Satislar S
 ON P.PersonelID = S.PersonelID INNER JOIN SatisDetaylari SD 
 ON S.SatisID = SD.SatisID INNER JOIN Urunler U 
@@ -1384,24 +1384,24 @@ ON U.KategoriID = K.KategoriID
 GROUP BY P.Adi + ' ' + P.SoyAdi, K.KategoriAdi
 
 SELECT * FROM vw_Gotur
-SELECT * FROM vw_Gotur WHERE [Adý Soyadý] LIKE '%Robert%'
+SELECT * FROM vw_Gotur WHERE [AdÄ± SoyadÄ±] LIKE '%Robert%'
 
--- View oluþturulurken kolonlara verilen aliaslar View den sorgu çekilirken kullanýlýr.
--- Bir yandan da view'ýn kullandýðý gerçek tablolarýn kolon isimleri, view içinde alias tanýmlanarak gizlenilmiþ olur
--- View içinde "order by" kullanýlmaz
--- "Order by" View içinde deðil , view çalýþýrken sorgu esnasýnda kullanýlmalýdýr
+-- View oluÅŸturulurken kolonlara verilen aliaslar View den sorgu Ã§ekilirken kullanÄ±lÄ±r.
+-- Bir yandan da view'Ä±n kullandÄ±ÄŸÄ± gerÃ§ek tablolarÄ±n kolon isimleri, view iÃ§inde alias tanÄ±mlanarak gizlenilmiÅŸ olur
+-- View iÃ§inde "order by" kullanÄ±lmaz
+-- "Order by" View iÃ§inde deÄŸil , view Ã§alÄ±ÅŸÄ±rken sorgu esnasÄ±nda kullanÄ±lmalÄ±dÄ±r
 
-SELECT * FROM vw_Gotur ORDER BY [Toplam Satýþ] DESC
+SELECT * FROM vw_Gotur ORDER BY [Toplam SatÄ±ÅŸ] DESC
 
--- yok eðer illa view içinde "order by" kullanýcam diyorsan top komutunu kullanmalýsýn
+-- yok eÄŸer illa view iÃ§inde "order by" kullanÄ±cam diyorsan top komutunu kullanmalÄ±sÄ±n
 
 
--- Çok tavsiye edilmez performans açýsýndan
+-- Ã‡ok tavsiye edilmez performans aÃ§Ä±sÄ±ndan
 
 ALTER VIEW vw_Gotur
 AS
 
-SELECT TOP 100 P.Adi + ' ' + P.SoyAdi [Adý Soyadý] , K.KategoriAdi [Kategori Adý],COUNT(S.SatisID) [Toplam Satýþ]
+SELECT TOP 100 P.Adi + ' ' + P.SoyAdi [AdÄ± SoyadÄ±] , K.KategoriAdi [Kategori AdÄ±],COUNT(S.SatisID) [Toplam SatÄ±ÅŸ]
 FROM Personeller P INNER JOIN Satislar S
 ON P.PersonelID = S.PersonelID INNER JOIN SatisDetaylari SD 
 ON S.SatisID = SD.SatisID INNER JOIN Urunler U 
@@ -1409,52 +1409,52 @@ ON SD.UrunID = U.UrunID INNER JOIN Kategoriler K
 ON U.KategoriID = K.KategoriID
 
 GROUP BY P.Adi + ' ' + P.SoyAdi, K.KategoriAdi 
-ORDER BY [Toplam Satýþ] DESC
+ORDER BY [Toplam SatÄ±ÅŸ] DESC
 
 SELECT * FROM vw_Gotur
 
--- INSERT , UPDATE ve DELETE yapabilirler. Bu iþlemleri fiziksel tabloya yansýtýrlar. ***Önemli
+-- INSERT , UPDATE ve DELETE yapabilirler. Bu iÅŸlemleri fiziksel tabloya yansÄ±tÄ±rlar. ***Ã–nemli
 
 CREATE VIEW OrnekViewPersoneller
 AS
 SELECT Adi,SoyAdi,Unvan FROM Personeller
 
-INSERT OrnekViewPersoneller VALUES('Özkan','Parlakkýlýç','Student')
-UPDATE OrnekViewPersoneller SET Adi = 'Ekrem' WHERE Adi = 'Özkan'
-DELETE FROM OrnekViewPersoneller WHERE Adi = 'Özkan'
+INSERT OrnekViewPersoneller VALUES('Ã–zkan','ParlakkÄ±lÄ±Ã§','Student')
+UPDATE OrnekViewPersoneller SET Adi = 'Ekrem' WHERE Adi = 'Ã–zkan'
+DELETE FROM OrnekViewPersoneller WHERE Adi = 'Ã–zkan'
 
 
 -- == WITH ENCRYPTION  ==
 
--- Eðer yazdýðýnýz view in kaynak kodlarýný,Object Explorer penceresinde "Views" kategorisine sað týlayarak 
--- Design Modda açýp görüntülemesini istemiyorsak "With Encryption" komutu ile view oluþturmalýyýz
+-- EÄŸer yazdÄ±ÄŸÄ±nÄ±z view in kaynak kodlarÄ±nÄ±,Object Explorer penceresinde "Views" kategorisine saÄŸ tÄ±layarak 
+-- Design Modda aÃ§Ä±p gÃ¶rÃ¼ntÃ¼lemesini istemiyorsak "With Encryption" komutu ile view oluÅŸturmalÄ±yÄ±z
 -- Dikkat ! ! !
 /*
-   "With Encryption" iþleminden sonra view'i oluþturan kiþide dahil göremez. Geri dönüþü yoktur.
-   Ancak view'i oluþturan þahsýn komutlarýn yedeðini bulundurmasý gerekmektedir. 
-   Ya da "With Encryption" olmaksýzýn view yapýsýný yeniden alterlamalýyýz
+   "With Encryption" iÅŸleminden sonra view'i oluÅŸturan kiÅŸide dahil gÃ¶remez. Geri dÃ¶nÃ¼ÅŸÃ¼ yoktur.
+   Ancak view'i oluÅŸturan ÅŸahsÄ±n komutlarÄ±n yedeÄŸini bulundurmasÄ± gerekmektedir. 
+   Ya da "With Encryption" olmaksÄ±zÄ±n view yapÄ±sÄ±nÄ± yeniden alterlamalÄ±yÄ±z
 */
 -- Dikkat ! ! !
---Bir dikkat edilmesi gereken þey de "With Encryption" ifadesi AS den önce yazýlýr
+--Bir dikkat edilmesi gereken ÅŸey de "With Encryption" ifadesi AS den Ã¶nce yazÄ±lÄ±r
 
 CREATE VIEW OrnekViewPersoneller
 WITH ENCRYPTION 
 AS
 SELECT Adi,SoyAdi,Unvan FROM Personeller
 
--- Bu iþlem yaptýktan sonra Design Modu kapatýlmýþtýr
+-- Bu iÅŸlem yaptÄ±ktan sonra Design Modu kapatÄ±lmÄ±ÅŸtÄ±r
 
 
 -- == WITH SCHEMABINDING  ==
 /*
-   Eðer view'in kullandýðý esas fiziksel tablolarýn kolon isimleri bir þekilde deðiþtirilir, kolonlarý silinir ya da tablo yapýsý bir
-   þekilde deðiþikliðe uðrarsa view'in çalýþmasý artýk mümkün olmayacaktýr
+   EÄŸer view'in kullandÄ±ÄŸÄ± esas fiziksel tablolarÄ±n kolon isimleri bir ÅŸekilde deÄŸiÅŸtirilir, kolonlarÄ± silinir ya da tablo yapÄ±sÄ± bir
+   ÅŸekilde deÄŸiÅŸikliÄŸe uÄŸrarsa view'in Ã§alÄ±ÅŸmasÄ± artÄ±k mÃ¼mkÃ¼n olmayacaktÄ±r
 */
--- View'in kullandýðý tablolar ve kolonlarý bu tarz iþlemler yapabilmesi ihtimaline karþý koruma altýna alýnabilir
--- Bu koruma "WITH SCHEMABINDING" ile yapýlabilir
--- "WITH SCHEMABINDING" ile view Create ya da Alter edilirken, view'in kullandýðý tablo, schema adýyla birlikte verilmelidir.
--- Örneðin, dbo(database owner) bir þema adýdýr. Þemalar C# taki namespaceler gibi düþünülebilir
--- "WITH SCHEMABINDING" komutuda AS den önce yazýlmalýdýr
+-- View'in kullandÄ±ÄŸÄ± tablolar ve kolonlarÄ± bu tarz iÅŸlemler yapabilmesi ihtimaline karÅŸÄ± koruma altÄ±na alÄ±nabilir
+-- Bu koruma "WITH SCHEMABINDING" ile yapÄ±labilir
+-- "WITH SCHEMABINDING" ile view Create ya da Alter edilirken, view'in kullandÄ±ÄŸÄ± tablo, schema adÄ±yla birlikte verilmelidir.
+-- Ã–rneÄŸin, dbo(database owner) bir ÅŸema adÄ±dÄ±r. Åžemalar C# taki namespaceler gibi dÃ¼ÅŸÃ¼nÃ¼lebilir
+-- "WITH SCHEMABINDING" komutuda AS den Ã¶nce yazÄ±lmalÄ±dÄ±r
 
 USE OrnekVT
 CREATE TABLE OrnekTablo
@@ -1473,8 +1473,8 @@ ALTER COLUMN Kolon1 INT
 
 
 -- === WITH CHECK OPTION ===
--- View'in içerisindeki sorguda bulunan þarta uygun kayýtlarýn INSERT edilmesine müsade edilip
--- uymayan kayýtlarýn müsaade edilmemesini saðlayan bir komuttur
+-- View'in iÃ§erisindeki sorguda bulunan ÅŸarta uygun kayÄ±tlarÄ±n INSERT edilmesine mÃ¼sade edilip
+-- uymayan kayÄ±tlarÄ±n mÃ¼saade edilmemesini saÄŸlayan bir komuttur
 
 USE Northwind
 CREATE VIEW OrnekView2
@@ -1484,7 +1484,7 @@ SELECT Adi,SoyAdi FROM Personeller WHERE Adi LIKE 'a%'
 INSERT OrnekView2 VALUES ('Ahmet','Aksu')
 INSERT OrnekView2 VALUES ('Mehmet','Aksu')
 
--- "WITH ENCRYPTION" ve "WITH SCHEMABINDING" komutlarýndan farklý olarak AS den sonra Where þartýnýn sonunda yazýlýr
+-- "WITH ENCRYPTION" ve "WITH SCHEMABINDING" komutlarÄ±ndan farklÄ± olarak AS den sonra Where ÅŸartÄ±nÄ±n sonunda yazÄ±lÄ±r
 
 CREATE VIEW OrnekView2
 AS
@@ -1498,19 +1498,19 @@ WITH CHECK OPTION
 
 -- SCALAR FUNCTION && INLINE FUNCTION
 
--- T-SQL'de iki tip fonksiyon vardýr.
--- SCALAR FUNCTION = Geriye istediðimiz bir tipte deðer döndüren fonksiyon
--- INLINE FUNCTION = Geriye tablo döndüren fonksiyon
+-- T-SQL'de iki tip fonksiyon vardÄ±r.
+-- SCALAR FUNCTION = Geriye istediÄŸimiz bir tipte deÄŸer dÃ¶ndÃ¼ren fonksiyon
+-- INLINE FUNCTION = Geriye tablo dÃ¶ndÃ¼ren fonksiyon
 
--- Bu iki fonksiyonda fiziksel olarak VT'de oluþurlar
--- CREATE ile oluþurlar
--- Üzerinde çalýþýlan VT'nin Programmability -> Functions kombinasyonundan oluþturulan fonksiyonlara eriþebiliriz.
+-- Bu iki fonksiyonda fiziksel olarak VT'de oluÅŸurlar
+-- CREATE ile oluÅŸurlar
+-- Ãœzerinde Ã§alÄ±ÅŸÄ±lan VT'nin Programmability -> Functions kombinasyonundan oluÅŸturulan fonksiyonlara eriÅŸebiliriz.
 
 
 -- == 1.Scalar Function ==
 
--- == Fonksiyon tanýmlama ==
--- Scalar fonksiyonlara tanýmladýktan sonra Programmability -> Function -> Scalar-valued Functions kombinasyonundan eriþilebilir
+-- == Fonksiyon tanÄ±mlama ==
+-- Scalar fonksiyonlara tanÄ±mladÄ±ktan sonra Programmability -> Function -> Scalar-valued Functions kombinasyonundan eriÅŸilebilir
 
 
 CREATE FUNCTION Topla(@Sayi1 INT, @Sayi2 INT) RETURNS INT
@@ -1522,8 +1522,8 @@ AS
 SELECT dbo.Topla(2,5)
 PRINT dbo.Topla(10,10)
 
--- Örnek
--- Herhangi bir ürünün %18 KDV dahil olmak üzere toplam maliyeti getiren fonksiyonu yazalým
+-- Ã–rnek
+-- Herhangi bir Ã¼rÃ¼nÃ¼n %18 KDV dahil olmak Ã¼zere toplam maliyeti getiren fonksiyonu yazalÄ±m
 
 CREATE FUNCTION Maliyet(@BirimFiyati INT, @StokMiktar INT) RETURNS NVARCHAR(MAX)
 AS
@@ -1535,38 +1535,38 @@ AS
 SELECT dbo.Maliyet(10,20) AS Maliyet
 
 -- == 2.Inline Function ==
--- Geriye tablo döndüren fonksiyon
+-- Geriye tablo dÃ¶ndÃ¼ren fonksiyon
 /*
-   Geriye tablo döndüreceði için bu fonksiyonlar çalýþtýrýlýrken sanki bir tablodan 
-   sorgu çalýþtýrýlýr gibi çalýþtýrýlýrlar. Bu yönleriyle viewlara benzerler. View ile
-   yapýlan iþlevler Inline Functions'larla yapýlabilirler
+   Geriye tablo dÃ¶ndÃ¼receÄŸi iÃ§in bu fonksiyonlar Ã§alÄ±ÅŸtÄ±rÄ±lÄ±rken sanki bir tablodan 
+   sorgu Ã§alÄ±ÅŸtÄ±rÄ±lÄ±r gibi Ã§alÄ±ÅŸtÄ±rÄ±lÄ±rlar. Bu yÃ¶nleriyle viewlara benzerler. View ile
+   yapÄ±lan iÅŸlevler Inline Functions'larla yapÄ±labilirler
 */
--- Genellikle viewle benzer iþlevler için View kullanýlmasý tavsiye edilir
+-- Genellikle viewle benzer iÅŸlevler iÃ§in View kullanÄ±lmasÄ± tavsiye edilir
 
--- == Fonksiyon tanýmlama ==
--- Inline fonksiyonlara tanýmladýktan sonra Programmability -> Function -> Table-valued Functions kombinasyonundan eriþilebilir
+-- == Fonksiyon tanÄ±mlama ==
+-- Inline fonksiyonlara tanÄ±mladÄ±ktan sonra Programmability -> Function -> Table-valued Functions kombinasyonundan eriÅŸilebilir
 
 --Dikkat ! ! !
---INLINE FUNCTIONS oluþturulurken BEGIN-END yapýsý kullanýlmaz
+--INLINE FUNCTIONS oluÅŸturulurken BEGIN-END yapÄ±sÄ± kullanÄ±lmaz
 
 CREATE FUNCTION tc_Gonder(@Ad NVARCHAR(20),@Soyad NVARCHAR(20)) RETURNS TABLE
 AS
 	RETURN SELECT Adi,SoyAdi FROM Personeller WHERE Adi = @Ad AND SoyAdi = @Soyad
 
-SELECT * FROM dbo.tc_Gonder('Özkan','Parlakkýlýç')
+SELECT * FROM dbo.tc_Gonder('Ã–zkan','ParlakkÄ±lÄ±Ã§')
 
 
 -- == Fonksiyonlarda WITH ENCRYPTION ==
 /*
--- Eðer ki yazmýþ olduðumuz fonksiyonlarýn kodlaýna 2. -3. þahýs engellemek istiyorsak "WITH ENCRYPTION" 
--- komutunu kullanmalýyýz 
+-- EÄŸer ki yazmÄ±ÅŸ olduÄŸumuz fonksiyonlarÄ±n kodlaÄ±na 2. -3. ÅŸahÄ±s engellemek istiyorsak "WITH ENCRYPTION" 
+-- komutunu kullanmalÄ±yÄ±z 
 */
 /*
-   "WITH ENCRYPTION" iþleminden sonra fonksiyonu oluþturan kiþide dahil kimse 
-   komutlarý göremez. Geri dönüþü yoktur. Ancak fonk. oluþturan kiþinin komutlarýn yedeðini bulundurmasý gerekmektedir
-   Ya da "WITH ENCRYPTION" olmaksýzýn fonksiyonu yeniden alterlamalýyýz.
+   "WITH ENCRYPTION" iÅŸleminden sonra fonksiyonu oluÅŸturan kiÅŸide dahil kimse 
+   komutlarÄ± gÃ¶remez. Geri dÃ¶nÃ¼ÅŸÃ¼ yoktur. Ancak fonk. oluÅŸturan kiÅŸinin komutlarÄ±n yedeÄŸini bulundurmasÄ± gerekmektedir
+   Ya da "WITH ENCRYPTION" olmaksÄ±zÄ±n fonksiyonu yeniden alterlamalÄ±yÄ±z.
 */
--- "WITH ENCRYPTION" AS den önce kullanýlmalýdýr
+-- "WITH ENCRYPTION" AS den Ã¶nce kullanÄ±lmalÄ±dÄ±r
 
 CREATE FUNCTION OrnekFonksiyon() RETURNS INT
 WITH ENCRYPTION
@@ -1583,17 +1583,17 @@ AS
 
 -- == Otomatik hesaplanabilir kolonlar - Computed Column ==
 
--- Herhangi bir kolonda fonk. kullanýlarak otomatik hesaplanabilir kolonlar (Computed Column) oluþturmak mümkündür
+-- Herhangi bir kolonda fonk. kullanÄ±larak otomatik hesaplanabilir kolonlar (Computed Column) oluÅŸturmak mÃ¼mkÃ¼ndÃ¼r
 
--- Örnek 
--- Çýktý olarak "_____ kategorisindeki _____ ürünün toplam fiyatý : _____ 'dýr." þeklinde bir fonksiyon yazalým.
+-- Ã–rnek 
+-- Ã‡Ä±ktÄ± olarak "_____ kategorisindeki _____ Ã¼rÃ¼nÃ¼n toplam fiyatÄ± : _____ 'dÄ±r." ÅŸeklinde bir fonksiyon yazalÄ±m.
 
 CREATE FUNCTION Rapor(@Kategori NVARCHAR(MAX),@UrunAdi NVARCHAR(MAX),@BirimFiyati INT, @Stok INT)
 RETURNS NVARCHAR(MAX)
 AS 
 	BEGIN
-		DECLARE @Rapor NVARCHAR(MAX) = @Kategori + ' kategorisindeki ' + @UrunAdi + ' ürünün toplam fiyatý ' + 
-		CAST(@BirimFiyati * @Stok AS NVARCHAR(MAX)) + ' dýr. ' 
+		DECLARE @Rapor NVARCHAR(MAX) = @Kategori + ' kategorisindeki ' + @UrunAdi + ' Ã¼rÃ¼nÃ¼n toplam fiyatÄ± ' + 
+		CAST(@BirimFiyati * @Stok AS NVARCHAR(MAX)) + ' dÄ±r. ' 
 		RETURN @Rapor
 	END
 
@@ -1602,32 +1602,32 @@ FROM Urunler U INNER JOIN Kategoriler K ON U.KategoriID = K.KategoriID
 
 ------------------------------------ FUNCTION FINISH ---------------------------------------------
 
--- STORED PRODUCURE (Saklý yordamlar)
+-- STORED PRODUCURE (SaklÄ± yordamlar)
 
--- == Genel Özellikleri ==
+-- == Genel Ã–zellikleri ==
 
 /* 
-   Normal sorgulardan daha hýzlý çalýþýrlar
-   Çünkü normal sorgular Execute edilirken "Execute Plan" iþlemi yapýlýr. Bu iþlem
-   sýrasýnda hangi tablodan veri çekilecek, hangi kolonlar gelecek, býnlar nerede v.s gibi iþlemler yapýlýr
-   Bir sorgu her çalýþtýrýldýðýnda bu iþlemler aynen tekrar tekrar yapýlýr.
-   Fakat sorgu Stored Procudure olarak çalýþtýrýlýrsa bu iþlem sadece bir kere yapýlýr ve o da ilk çalýþma esnasýndadýr.
-   Diðer çalýþtýrmalarda ise bu iþlemler yapýlmaz .
-   Bundan dolayý hýz ve performansta artýþ saðlanýr
+   Normal sorgulardan daha hÄ±zlÄ± Ã§alÄ±ÅŸÄ±rlar
+   Ã‡Ã¼nkÃ¼ normal sorgular Execute edilirken "Execute Plan" iÅŸlemi yapÄ±lÄ±r. Bu iÅŸlem
+   sÄ±rasÄ±nda hangi tablodan veri Ã§ekilecek, hangi kolonlar gelecek, bÄ±nlar nerede v.s gibi iÅŸlemler yapÄ±lÄ±r
+   Bir sorgu her Ã§alÄ±ÅŸtÄ±rÄ±ldÄ±ÄŸÄ±nda bu iÅŸlemler aynen tekrar tekrar yapÄ±lÄ±r.
+   Fakat sorgu Stored Procudure olarak Ã§alÄ±ÅŸtÄ±rÄ±lÄ±rsa bu iÅŸlem sadece bir kere yapÄ±lÄ±r ve o da ilk Ã§alÄ±ÅŸma esnasÄ±ndadÄ±r.
+   DiÄŸer Ã§alÄ±ÅŸtÄ±rmalarda ise bu iÅŸlemler yapÄ±lmaz .
+   Bundan dolayÄ± hÄ±z ve performansta artÄ±ÅŸ saÄŸlanÄ±r
 */
--- Ýçerisinde SELECT, DELETE,UPDATE ve INSERT iþlemleri yapýlabilir.
--- Ýç içe kullanýlabilir
--- Ýçlerinde fonksiyon oluþturulabilir
+-- Ä°Ã§erisinde SELECT, DELETE,UPDATE ve INSERT iÅŸlemleri yapÄ±labilir.
+-- Ä°Ã§ iÃ§e kullanÄ±labilir
+-- Ä°Ã§lerinde fonksiyon oluÅŸturulabilir
 /* 
-   Sorgularýmýzýn dýþardan alacaðý deðerler parametre olarak Stored Procudure'lere
-   geçirebildiðinizden dolayý , sorgularýmýzýn "SQL Injection" yemelerinide önlemiþ oluruz
-   Bu yönleriyle de daha güvenildirler
+   SorgularÄ±mÄ±zÄ±n dÄ±ÅŸardan alacaÄŸÄ± deÄŸerler parametre olarak Stored Procudure'lere
+   geÃ§irebildiÄŸinizden dolayÄ± , sorgularÄ±mÄ±zÄ±n "SQL Injection" yemelerinide Ã¶nlemiÅŸ oluruz
+   Bu yÃ¶nleriyle de daha gÃ¼venildirler
 */
 
--- SP fiziksel bir VT nesnesidir. Haliyle CREATE komutu ile oluþturulur.
--- Fiziksel olarak ilgili VT'nin Programmability -> Stored Procudure kombinasyonundan eriþilebilir
+-- SP fiziksel bir VT nesnesidir. Haliyle CREATE komutu ile oluÅŸturulur.
+-- Fiziksel olarak ilgili VT'nin Programmability -> Stored Procudure kombinasyonundan eriÅŸilebilir
 
--- == Geriye deðer döndüren SP yapýsý ==
+-- == Geriye deÄŸer dÃ¶ndÃ¼ren SP yapÄ±sÄ± ==
 
 CREATE PROC UrunGetir
 (
@@ -1637,14 +1637,14 @@ SELECT * FROM Urunler WHERE BirimFiyati > @Fiyat
 RETURN @@ROWCOUNT
 
 EXEC UrunGetir 70
--- Bu þekilde geriye dönülen deðeri elde etmeksizin kullanýlabilir.
+-- Bu ÅŸekilde geriye dÃ¶nÃ¼len deÄŸeri elde etmeksizin kullanÄ±labilir.
 
 DECLARE @Sonuc INT
 EXEC @Sonuc = UrunGetir 70
-PRINT CAST(@Sonuc AS NVARCHAR(MAX)) + ' adet ürün bu iþlemden etkilenmiþtir'
+PRINT CAST(@Sonuc AS NVARCHAR(MAX)) + ' adet Ã¼rÃ¼n bu iÅŸlemden etkilenmiÅŸtir'
 
 
--- == Output ile deðer döndüren  ==
+-- == Output ile deÄŸer dÃ¶ndÃ¼ren  ==
 
 CREATE PROC sp_Ornek
 (
@@ -1659,11 +1659,11 @@ EXEC sp_Ornek 3, @Adi OUTPUT, @SoyAdi  OUTPUT
 SELECT @Adi + ' ' + @SoyAdi AS Personel
 
 
--- == Genel Örnek ==
+-- == Genel Ã–rnek ==
 
 /*
-   Dýþarýdan aldýðý isim,soyisim ve þehir bilgilerini Personeller tablosunda ilgili kolonlara
-   ekleyen SP yi yazýnýz
+   DÄ±ÅŸarÄ±dan aldÄ±ÄŸÄ± isim,soyisim ve ÅŸehir bilgilerini Personeller tablosunda ilgili kolonlara
+   ekleyen SP yi yazÄ±nÄ±z
 */
 
 CREATE PROC sp_PersonelEkle
@@ -1674,48 +1674,48 @@ CREATE PROC sp_PersonelEkle
 )AS
 INSERT Personeller(Adi,SoyAdi,Sehir) VALUES (@Adi,@SoyAdi,@Sehir)
 
-EXEC sp_PersonelEkle 'Ekrem', 'Parlakkýlýç','Sakarya'
+EXEC sp_PersonelEkle 'Ekrem', 'ParlakkÄ±lÄ±Ã§','Sakarya'
 SELECT * FROM Personeller
 
--- == Parametrelere Varsayýlan Deðer ==
+-- == Parametrelere VarsayÄ±lan DeÄŸer ==
 
 CREATE PROC sp_PersonelEkle2
 (
-	@Adi NVARCHAR(MAX) = 'Ýsimsiz',
-	@SoyAdi NVARCHAR(MAX) = 'Soyadsýz',
-	@Sehir NVARCHAR(MAX) = 'Þehir girilmemiþ'
+	@Adi NVARCHAR(MAX) = 'Ä°simsiz',
+	@SoyAdi NVARCHAR(MAX) = 'SoyadsÄ±z',
+	@Sehir NVARCHAR(MAX) = 'Åžehir girilmemiÅŸ'
 )AS
 INSERT Personeller(Adi,SoyAdi,Sehir) VALUES (@Adi,@SoyAdi,@Sehir)
 
-EXEC sp_PersonelEkle2 'Ekrem', 'Parlakkýlýç','Sakarya'
--- Burada varsayýlan deðerler devreye girmemektedir
+EXEC sp_PersonelEkle2 'Ekrem', 'ParlakkÄ±lÄ±Ã§','Sakarya'
+-- Burada varsayÄ±lan deÄŸerler devreye girmemektedir
 SELECT * FROM Personeller
 
 EXEC sp_PersonelEkle2 
 /*
-   Normalde bu þekilde parametrelere deðer göndermeksizin çalýþmamasý lazým
-   ama varsayýlan deðerler tanýmda belirtildiði için devreye girmektedir
+   Normalde bu ÅŸekilde parametrelere deÄŸer gÃ¶ndermeksizin Ã§alÄ±ÅŸmamasÄ± lazÄ±m
+   ama varsayÄ±lan deÄŸerler tanÄ±mda belirtildiÄŸi iÃ§in devreye girmektedir
 */
 
-EXEC sp_PersonelEkle2 'Ýbrahim'
+EXEC sp_PersonelEkle2 'Ä°brahim'
 
--- @Adi parametresi 'Ýbrahim' deðerini alacaktýr.Diðer parametreler ise varsayýlan deðerleri alacaktýr
+-- @Adi parametresi 'Ä°brahim' deÄŸerini alacaktÄ±r.DiÄŸer parametreler ise varsayÄ±lan deÄŸerleri alacaktÄ±r
 
 -- EXEC komutu
 
 EXEC('SELECT * FROM Personeller')
 SELECT * FROM Personeller
 
--- Yanlýþ kullaným 
--- 2 EXEC komutu birbirinden baðýmsýz çalýþýr ve print ekrena sayac deðerini basamaz deðiþken tanýmlanmamýþtýr
+-- YanlÄ±ÅŸ kullanÄ±m 
+-- 2 EXEC komutu birbirinden baÄŸÄ±msÄ±z Ã§alÄ±ÅŸÄ±r ve print ekrena sayac deÄŸerini basamaz deÄŸiÅŸken tanÄ±mlanmamÄ±ÅŸtÄ±r
 EXEC ('DECLARE @Sayac INT = 0')
 EXEC ('PRINT @Sayac')
 
--- Doðru kullaným 
+-- DoÄŸru kullanÄ±m 
 
 EXEC ('DECLARE @Sayac INT = 0 PRINT @Sayac')
 
--- == SP içerisinde nesne oluþturma
+-- == SP iÃ§erisinde nesne oluÅŸturma
 
 CREATE PROC sp_TabloOlustur
 (
@@ -1742,44 +1742,44 @@ EXEC sp_TabloOlustur 'OrnekTablo','Id','INT PRIMARY KEY IDENTITY(1,1)','Kolon2',
 
 -- == DML TRIGGER
 /*
-   Bir tabloda INSERT,UPDATE ve DELETE iþlemleri gerçekleþtirildiðinde devreye giren yapýlardýr.
-   Bu iþlem sonucunda veya sürecinde devreye girerler
+   Bir tabloda INSERT,UPDATE ve DELETE iÅŸlemleri gerÃ§ekleÅŸtirildiÄŸinde devreye giren yapÄ±lardÄ±r.
+   Bu iÅŸlem sonucunda veya sÃ¼recinde devreye girerler
 */
 
 -- *INSERTED TABLE
 /*
-   Eðer bir tabloda Insert iþlemi yapýlýyorsa arka planda iþlemler ilk önce RAM'de oluþturulan 
-   inserted isimli bir tablo üzerinde yapýlýr.Eðer iþlemde bir problem yoksa inserted tablosundaki 
-   veriler fiziksel tabloya insert edilir. Ýþlem bittiðinde RAM'de oluþturulan bu inserted tablosu
+   EÄŸer bir tabloda Insert iÅŸlemi yapÄ±lÄ±yorsa arka planda iÅŸlemler ilk Ã¶nce RAM'de oluÅŸturulan 
+   inserted isimli bir tablo Ã¼zerinde yapÄ±lÄ±r.EÄŸer iÅŸlemde bir problem yoksa inserted tablosundaki 
+   veriler fiziksel tabloya insert edilir. Ä°ÅŸlem bittiÄŸinde RAM'de oluÅŸturulan bu inserted tablosu
    silinir.
 */
 
 -- *DELETED TABLE
 /*
-   Eðer bir tabloda Delete iþlemi yapýlýyorsa arka planda iþlemler ilk önce RAM'de oluþturulan 
-   deleted isimli bir tablo üzerinde yapýlýr.Eðer iþlemde bir problem yoksa deleted tablosundaki 
-   veriler fiziksel tablodan silinir. Ýþlem bittiðinde RAM'den bu deleted tablosuda
+   EÄŸer bir tabloda Delete iÅŸlemi yapÄ±lÄ±yorsa arka planda iÅŸlemler ilk Ã¶nce RAM'de oluÅŸturulan 
+   deleted isimli bir tablo Ã¼zerinde yapÄ±lÄ±r.EÄŸer iÅŸlemde bir problem yoksa deleted tablosundaki 
+   veriler fiziksel tablodan silinir. Ä°ÅŸlem bittiÄŸinde RAM'den bu deleted tablosuda
    silinir.
 */
 
--- Eðer bir tabloda Update iþlemi yapýlýyorsa RAM'de uptadet isimli bir tablo OLUÞTURULMAZ ! ! ! 
--- SQL Server'da ki Update mantýðý önce silme, sonra eklemedir.
+-- EÄŸer bir tabloda Update iÅŸlemi yapÄ±lÄ±yorsa RAM'de uptadet isimli bir tablo OLUÅžTURULMAZ ! ! ! 
+-- SQL Server'da ki Update mantÄ±ÄŸÄ± Ã¶nce silme, sonra eklemedir.
 /*
-   Eðer bir tabloda update iþlemi yapýlýyorsa arka planda RAM'de hem deleted hem de inserted tablolarý
-   oluþturulur ve bunlar üzerinde iþlemler yapýlýr
+   EÄŸer bir tabloda update iÅŸlemi yapÄ±lÄ±yorsa arka planda RAM'de hem deleted hem de inserted tablolarÄ±
+   oluÅŸturulur ve bunlar Ã¼zerinde iÅŸlemler yapÄ±lÄ±r
 */
 /*
-   NOT : Update yaparken güncellenen kaydýn orjinali deleted tablosunda , güncellendikten sonraki hali ise
-   inserted tablosunda bulunmaktadýr. Çünkü güncelleme demek kaydý önce silmek sonra eklemek demektir.
-*/
-
-/*
-   Deleted ve inserted tablolarý, ilgili sorgu sonucu oluþtuklarý için o sorgunun kullandýðý
-   kolonlara da sahþp olur. Böylece deleted ve inserted tablolarýnda select sorgusu yapmak mümkündür.
+   NOT : Update yaparken gÃ¼ncellenen kaydÄ±n orjinali deleted tablosunda , gÃ¼ncellendikten sonraki hali ise
+   inserted tablosunda bulunmaktadÄ±r. Ã‡Ã¼nkÃ¼ gÃ¼ncelleme demek kaydÄ± Ã¶nce silmek sonra eklemek demektir.
 */
 
--- DÝKKAT ! ! !
--- Tanýmlanan Triggerlara ilgili tablonun içerisindeki Triggers sekmesi altýndan eriþebilir.
+/*
+   Deleted ve inserted tablolarÄ±, ilgili sorgu sonucu oluÅŸtuklarÄ± iÃ§in o sorgunun kullandÄ±ÄŸÄ±
+   kolonlara da sahÅŸp olur. BÃ¶ylece deleted ve inserted tablolarÄ±nda select sorgusu yapmak mÃ¼mkÃ¼ndÃ¼r.
+*/
+
+-- DÄ°KKAT ! ! !
+-- TanÄ±mlanan Triggerlara ilgili tablonun iÃ§erisindeki Triggers sekmesi altÄ±ndan eriÅŸebilir.
 
 CREATE TRIGGER OrnekTrigger
 ON Personeller
@@ -1787,11 +1787,11 @@ AFTER INSERT
 AS 
 SELECT * FROM Personeller
 
-INSERT Personeller(Adi,SoyAdi) VALUES('Özkan','Parlakkýlýç')
+INSERT Personeller(Adi,SoyAdi) VALUES('Ã–zkan','ParlakkÄ±lÄ±Ã§')
 
 
--- Örnek 1 
--- Tedarikçiler tablosundan bir veri silindiðinde tüm ürünlerin fiyatý 10 artsýn
+-- Ã–rnek 1 
+-- TedarikÃ§iler tablosundan bir veri silindiÄŸinde tÃ¼m Ã¼rÃ¼nlerin fiyatÄ± 10 artsÄ±n
 
 CREATE TRIGGER TriggerTedarikciler
 ON Tedarikciler
@@ -1802,8 +1802,8 @@ SELECT * FROM Urunler
 
 DELETE FROM Tedarikciler WHERE TedarikciID = 30
 
--- Örnek 2 
--- Tedarikçiler tablosundan bir veri güncellendiðinde,kategoriler tablosunda "Meyve kokteyli" adýnda bir kategori oluþsun
+-- Ã–rnek 2 
+-- TedarikÃ§iler tablosundan bir veri gÃ¼ncellendiÄŸinde,kategoriler tablosunda "Meyve kokteyli" adÄ±nda bir kategori oluÅŸsun
 
 CREATE TRIGGER TrgTedarikciUpdate
 ON Tedarikciler
@@ -1814,10 +1814,10 @@ SELECT * FROM Kategoriler
 
 UPDATE Tedarikciler SET MusteriAdi = 'Ekrem' WHERE MusteriAdi = 'Owner'
 
--- Örnek 3
+-- Ã–rnek 3
 /*
-   Personeller tablosundan bir kayýt silindiðinde silinen kaydýn adý, soyadý, kim tarafýndan ve
-   hangi tarihte silindiði baþka bir tabloya kayýt edilsin. Bir nevi log tablosu gibi
+   Personeller tablosundan bir kayÄ±t silindiÄŸinde silinen kaydÄ±n adÄ±, soyadÄ±, kim tarafÄ±ndan ve
+   hangi tarihte silindiÄŸi baÅŸka bir tabloya kayÄ±t edilsin. Bir nevi log tablosu gibi
 */
 
 CREATE TABLE LogTablosu
@@ -1832,17 +1832,17 @@ AFTER DELETE
 AS 
 DECLARE @Adi NVARCHAR(MAX) , @SoyAdi NVARCHAR(MAX)
 SELECT @Adi = Adi, @SoyAdi = SoyAdi from deleted
-INSERT LogTablosu VALUES ('Adý ve Soyadý' + @Adi + ' ' + @SoyAdi + ' olan personel ' + SUSER_NAME()
-						  + ' tarafýndan ' + CAST(GETDATE() AS NVARCHAR(MAX)) + ' tarihinde silinmiþtir.')
+INSERT LogTablosu VALUES ('AdÄ± ve SoyadÄ±' + @Adi + ' ' + @SoyAdi + ' olan personel ' + SUSER_NAME()
+						  + ' tarafÄ±ndan ' + CAST(GETDATE() AS NVARCHAR(MAX)) + ' tarihinde silinmiÅŸtir.')
 
 
 DELETE FROM Personeller WHERE PersonelID = 11
 
--- Örnek 4
+-- Ã–rnek 4
 /*
-   Personeller tablosunda update gerçekleþtiði anda devreye giren ve bir log tablosuna "Adý ..."
-   olan personel ... yeni adýyla deðiþtirilerek ... kullanýcý tarafýndan ... tarihinde güncellendi.
-   Kalýbýnda bir rapor yazan trg yazalým
+   Personeller tablosunda update gerÃ§ekleÅŸtiÄŸi anda devreye giren ve bir log tablosuna "AdÄ± ..."
+   olan personel ... yeni adÄ±yla deÄŸiÅŸtirilerek ... kullanÄ±cÄ± tarafÄ±ndan ... tarihinde gÃ¼ncellendi.
+   KalÄ±bÄ±nda bir rapor yazan trg yazalÄ±m
 */
 
 
@@ -1853,11 +1853,11 @@ AS
 DECLARE @EskiAdi NVARCHAR(MAX),@YeniAdi NVARCHAR(MAX)
 SELECT @EskiAdi = Adi from deleted
 SELECT @YeniAdi = Adi from inserted
-INSERT LogTablosu VALUES ('Adý ' + @EskiAdi + ' olan personel ' + @YeniAdi + ' yeni adýyla deðiþtirilerek ' + SUSER_NAME()
-						  + ' kullanýcý tarafýndan ' + CAST(GETDATE() AS NVARCHAR(MAX)) + ' tarihinde güncellenmiþtir.')
+INSERT LogTablosu VALUES ('AdÄ± ' + @EskiAdi + ' olan personel ' + @YeniAdi + ' yeni adÄ±yla deÄŸiÅŸtirilerek ' + SUSER_NAME()
+						  + ' kullanÄ±cÄ± tarafÄ±ndan ' + CAST(GETDATE() AS NVARCHAR(MAX)) + ' tarihinde gÃ¼ncellenmiÅŸtir.')
 
 
-UPDATE Personeller SET Adi = 'Ekrem' WHERE Adi = 'Özkan'
+UPDATE Personeller SET Adi = 'Ekrem' WHERE Adi = 'Ã–zkan'
 
 -- === Multiple Actions Trigger ===
 
@@ -1867,25 +1867,25 @@ AFTER DELETE,INSERT
 AS 
 PRINT 'Hello'
 
-INSERT Personeller(Adi,SoyAdi) VALUES('Özkan','Parlakkýlýç')
+INSERT Personeller(Adi,SoyAdi) VALUES('Ã–zkan','ParlakkÄ±lÄ±Ã§')
 DELETE FROM Personeller WHERE PersonelId = 30
 
 -- === Instead Of Triggers ===
 
 /*
-   Þu ana kadar Insert,Update ve Delete iþlemleri yapýlýrken þu þu iþlemi yap 
-   mantýðýyla çalýþtýk.(Yanýnda þunu yap)
+   Åžu ana kadar Insert,Update ve Delete iÅŸlemleri yapÄ±lÄ±rken ÅŸu ÅŸu iÅŸlemi yap 
+   mantÄ±ÄŸÄ±yla Ã§alÄ±ÅŸtÄ±k.(YanÄ±nda ÅŸunu yap)
 */ 
 /*
-   Instead Of Triggerlar ise Insert,Update ve Delete iþlemleri yerine þu þu iþlemi yap 
-   mantýðýyla çalýþmaktadýrlar.(Yerine þunu yap)
+   Instead Of Triggerlar ise Insert,Update ve Delete iÅŸlemleri yerine ÅŸu ÅŸu iÅŸlemi yap 
+   mantÄ±ÄŸÄ±yla Ã§alÄ±ÅŸmaktadÄ±rlar.(Yerine ÅŸunu yap)
 */
 
--- Örnek 5
+-- Ã–rnek 5
 /*
-   Personeller tablosunda update gerçekleþtiði anda yapýcalak güncelleþtirme yerine bir log tablosuna
-   "Adý ..." olan personel ... yeni adýyla deðiþtirilerek ... kullanýcý tarafýndan ... tarihinde güncellenmek istendi.
-   Kalýbýnda bir rapor yazan trg yazalým.
+   Personeller tablosunda update gerÃ§ekleÅŸtiÄŸi anda yapÄ±calak gÃ¼ncelleÅŸtirme yerine bir log tablosuna
+   "AdÄ± ..." olan personel ... yeni adÄ±yla deÄŸiÅŸtirilerek ... kullanÄ±cÄ± tarafÄ±ndan ... tarihinde gÃ¼ncellenmek istendi.
+   KalÄ±bÄ±nda bir rapor yazan trg yazalÄ±m.
 */
 
 
@@ -1898,19 +1898,19 @@ SELECT @EskiAdi = Adi from deleted
 SELECT @YeniAdi = Adi from inserted
 IF @EskiAdi = @YeniAdi
 	BEGIN
-		INSERT LogTablosu VALUES ('Adý ' + @EskiAdi + ' olan personel ' + SUSER_NAME()
-								  + ' kullanýcý tarafýndan ' + CAST(GETDATE() AS NVARCHAR(MAX)) + ' tarihinde güncellenmek istendi.')
+		INSERT LogTablosu VALUES ('AdÄ± ' + @EskiAdi + ' olan personel ' + SUSER_NAME()
+								  + ' kullanÄ±cÄ± tarafÄ±ndan ' + CAST(GETDATE() AS NVARCHAR(MAX)) + ' tarihinde gÃ¼ncellenmek istendi.')
 	END
 ELSE
 	BEGIN
-		INSERT LogTablosu VALUES ('Adý ' + @EskiAdi + ' olan personel ' + @YeniAdi + ' yeni adýyla deðiþtirilerek ' + SUSER_NAME()
-								  + ' kullanýcý tarafýndan ' + CAST(GETDATE() AS NVARCHAR(MAX)) + ' tarihinde güncellenmek istendi.')
+		INSERT LogTablosu VALUES ('AdÄ± ' + @EskiAdi + ' olan personel ' + @YeniAdi + ' yeni adÄ±yla deÄŸiÅŸtirilerek ' + SUSER_NAME()
+								  + ' kullanÄ±cÄ± tarafÄ±ndan ' + CAST(GETDATE() AS NVARCHAR(MAX)) + ' tarihinde gÃ¼ncellenmek istendi.')
 	END
 
-UPDATE Personeller SET Adi = 'Özkan' WHERE Adi = 'Ekrem'
+UPDATE Personeller SET Adi = 'Ã–zkan' WHERE Adi = 'Ekrem'
 
--- Örnek 6 
--- Personeller tablosunda adý "Andrew" olan kaydýn silinmesini engelleyen ama diðerlerine izin veren triggerý yazalým
+-- Ã–rnek 6 
+-- Personeller tablosunda adÄ± "Andrew" olan kaydÄ±n silinmesini engelleyen ama diÄŸerlerine izin veren triggerÄ± yazalÄ±m
 
 CREATE TRIGGER AndrewTrigger
 ON Personeller
@@ -1921,31 +1921,31 @@ SELECT @Adi = Adi from deleted
 
 IF @Adi = 'Andrew'
 	BEGIN
-		PRINT 'Bu kaydý silemezsin'
-		ROLLBACK -- Yapýlan tüm iþlemleri geri alýr
+		PRINT 'Bu kaydÄ± silemezsin'
+		ROLLBACK -- YapÄ±lan tÃ¼m iÅŸlemleri geri alÄ±r
 	END
 
 DELETE FROM Personeller WHERE PersonelID = 10
 
 -- == DDL TRIGGER
 
--- CREATE, ALTER ve DROP iþlemleri sonucunda veya sürecinde devreye girecek olan yapýlardýr. 
+-- CREATE, ALTER ve DROP iÅŸlemleri sonucunda veya sÃ¼recinde devreye girecek olan yapÄ±lardÄ±r. 
 
 CREATE TRIGGER DDL_Trigger
 ON DATABASE
 FOR drop_table,alter_table,create_function,create_procudure,drop_procudure -- v.s
 AS 
-PRINT 'Bu iþlem gerçekleþtirilemez'
+PRINT 'Bu iÅŸlem gerÃ§ekleÅŸtirilemez'
 ROLLBACK
 
 DROP TABLE LogTablosu
 
--- DÝKKAT ! ! !
--- DDL Triggerlara ilgili veritabanýnýn Programmability -> Database Triggers sekmesi altýndan eriþilir
+-- DÄ°KKAT ! ! !
+-- DDL Triggerlara ilgili veritabanÄ±nÄ±n Programmability -> Database Triggers sekmesi altÄ±ndan eriÅŸilir
 
--- === Trigger'ý Devre Dýþý Býrakma ===
+-- === Trigger'Ä± Devre DÄ±ÅŸÄ± BÄ±rakma ===
 DISABLE TRIGGER TrgPersonelRaporInstead ON Personeller
--- === Trigger'ý Aktifleþtirme ===
+-- === Trigger'Ä± AktifleÅŸtirme ===
 ENABLE TRIGGER TrgPersonelRaporInstead ON Personeller
 
 
@@ -1954,42 +1954,42 @@ ENABLE TRIGGER TrgPersonelRaporInstead ON Personeller
 -- TRANSACTION
 
 /*
-   Birden çok iþlemin bir arada yapýldýðý durumlarda eðer parçayý oluþturan iþlemlerden herhangi birinde 
-   sorun olursa tüm iþlemi iptal ettirmeye yarar
+   Birden Ã§ok iÅŸlemin bir arada yapÄ±ldÄ±ÄŸÄ± durumlarda eÄŸer parÃ§ayÄ± oluÅŸturan iÅŸlemlerden herhangi birinde 
+   sorun olursa tÃ¼m iÅŸlemi iptal ettirmeye yarar
 */
 /*
-   Örneðin; kredi kartý ile alýþveriþ iþlemlerinde transaction iþlemi vardýr. Siz marketten ürün alýrken
-   sizin hesabýnýzdan para düþülecek, marketin hesabýna para aktarýlacaktýr. Bu iþlemde hata olmamasý
-   gerekir ve bundan dolayý bu iþlem transaction bloðunda gerçekleþtirilmelidir. Bu esnada herhangi bir sorun olursa 
-   bütün iþlemler transaction tarafýndan iptal edilir.
+   Ã–rneÄŸin; kredi kartÄ± ile alÄ±ÅŸveriÅŸ iÅŸlemlerinde transaction iÅŸlemi vardÄ±r. Siz marketten Ã¼rÃ¼n alÄ±rken
+   sizin hesabÄ±nÄ±zdan para dÃ¼ÅŸÃ¼lecek, marketin hesabÄ±na para aktarÄ±lacaktÄ±r. Bu iÅŸlemde hata olmamasÄ±
+   gerekir ve bundan dolayÄ± bu iÅŸlem transaction bloÄŸunda gerÃ§ekleÅŸtirilmelidir. Bu esnada herhangi bir sorun olursa 
+   bÃ¼tÃ¼n iÅŸlemler transaction tarafÄ±ndan iptal edilir.
 */
 
--- Begin Tran veya Begin Transaction : Transaction iþlemini baþlatýr.
+-- Begin Tran veya Begin Transaction : Transaction iÅŸlemini baÅŸlatÄ±r.
 
--- Commit Tran : Transaction iþlemini baþarýyla sona erdirir. Ýþlem(ler)i gerçekleþtirir
--- Rollback Tran: Transaction iþlemini iptal eder. Ýþlem(ler)i geri alýr.
+-- Commit Tran : Transaction iÅŸlemini baÅŸarÄ±yla sona erdirir. Ä°ÅŸlem(ler)i gerÃ§ekleÅŸtirir
+-- Rollback Tran: Transaction iÅŸlemini iptal eder. Ä°ÅŸlem(ler)i geri alÄ±r.
 
--- Commit Tran yerine Commit yazýlabilir.
--- Rollback Tran yerine Rollback yazýlabilir.
+-- Commit Tran yerine Commit yazÄ±labilir.
+-- Rollback Tran yerine Rollback yazÄ±labilir.
 
 /*
-   Normalde default olarak her þey Begin Tran ile baþlayýp, Commit Tran ile biter. !!!
-   Biz bu yapýlarý kullanmasak bile !!!
+   Normalde default olarak her ÅŸey Begin Tran ile baÅŸlayÄ±p, Commit Tran ile biter. !!!
+   Biz bu yapÄ±larÄ± kullanmasak bile !!!
 */
 
-INSERT Bolge VALUES(5,'Sakarya') -- Varsayýlan olarak Tran kontrolünde bir iþlemdir.Sonuç olarak da Commit ile biter.
+INSERT Bolge VALUES(5,'Sakarya') -- VarsayÄ±lan olarak Tran kontrolÃ¼nde bir iÅŸlemdir.SonuÃ§ olarak da Commit ile biter.
 
 BEGIN TRAN Kontrol
 INSERT Bolge VALUES(5,'Sakarya') 
 COMMIT
 
--- Transaction'a isim vermek zorunda deðiliz.
+-- Transaction'a isim vermek zorunda deÄŸiliz.
 
 BEGIN TRAN
 INSERT Bolge VALUES(5,'Sakarya') 
 COMMIT
 
--- Örnek
+-- Ã–rnek
 
 BEGIN TRAN Kontrol
 DECLARE @i INT
@@ -1997,22 +1997,22 @@ DELETE FROM Personeller WHERE PersonelID > 20
 SET @i = @@ROWCOUNT
 IF @i = 1
 	BEGIN
-		PRINT 'Kayýt silindi.'
+		PRINT 'KayÄ±t silindi.'
 		COMMIT
 	END
 ELSE
 	BEGIN
-		PRINT 'Ýþlem baþarýsýz.'
+		PRINT 'Ä°ÅŸlem baÅŸarÄ±sÄ±z.'
 		ROLLBACK
 	END
 
 
--- == Banka uygulamasý ==
+-- == Banka uygulamasÄ± ==
 
--- Örnek
+-- Ã–rnek
 /*
-   Ýki adet banka tablosu oluþturalým. Bankalar arasý havale iþlemi gerçekleþtirelim. Ve bu iþlemleri
-   yaparken tran kullanalým
+   Ä°ki adet banka tablosu oluÅŸturalÄ±m. Bankalar arasÄ± havale iÅŸlemi gerÃ§ekleÅŸtirelim. Ve bu iÅŸlemleri
+   yaparken tran kullanalÄ±m
 */
 
 CREATE DATABASE BankaDb
@@ -2053,7 +2053,7 @@ DECLARE @GonderenBakiye INT,@AlanBakiye INT,@HesaptakiPara MONEY
 		SELECT @HesaptakiPara = Bakiye FROM ABanka WHERE HesapNo = @GonderenHesapNo
 		IF @Tutar > @HesaptakiPara
 			BEGIN
-				PRINT CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralý hesapta gönderilmek istenenden az para mevcuttur.'
+				PRINT CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesapta gÃ¶nderilmek istenenden az para mevcuttur.'
 				ROLLBACK
 			END
 		ELSE
@@ -2062,16 +2062,16 @@ DECLARE @GonderenBakiye INT,@AlanBakiye INT,@HesaptakiPara MONEY
 					BEGIN
 						UPDATE ABanka SET Bakiye = Bakiye - @Tutar WHERE HesapNo = @GonderenHesapNo
 						UPDATE BBanka SET Bakiye = Bakiye + @Tutar WHERE HesapNo =  @AlanHesapNo
-						PRINT @BankaKimden + ' sýndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralý hesaptan ' + @BankaKime 
-						+ ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralý hesaba ' + CAST(@Tutar AS NVARCHAR(MAX)) 
-						+ ' deðerinde para havale edilmiþtir.'
-						PRINT 'Son deðerler;'
+						PRINT @BankaKimden + ' sÄ±ndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesaptan ' + @BankaKime 
+						+ ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesaba ' + CAST(@Tutar AS NVARCHAR(MAX)) 
+						+ ' deÄŸerinde para havale edilmiÅŸtir.'
+						PRINT 'Son deÄŸerler;'
 
 						SELECT @GonderenBakiye = Bakiye FROM ABanka WHERE HesapNo = @GonderenHesapNo
 						SELECT @AlanBakiye = Bakiye FROM BBanka WHERE HesapNo = @AlanHesapNo
-						PRINT @BankaKimden + ' sýndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralý hesapta kalan bakiye :'
+						PRINT @BankaKimden + ' sÄ±ndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesapta kalan bakiye :'
 						+ CAST(@GonderenBakiye AS NVARCHAR(MAX))
-						PRINT @BankaKime + ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralý hesapta kalan bakiye :'
+						PRINT @BankaKime + ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesapta kalan bakiye :'
 						+ CAST(@AlanBakiye AS NVARCHAR(MAX))
 						COMMIT
 					 END
@@ -2079,16 +2079,16 @@ DECLARE @GonderenBakiye INT,@AlanBakiye INT,@HesaptakiPara MONEY
 					BEGIN
 						UPDATE ABanka SET Bakiye = Bakiye - @Tutar WHERE HesapNo = @GonderenHesapNo
 						UPDATE ABanka SET Bakiye = Bakiye + @Tutar WHERE HesapNo =  @AlanHesapNo
-						PRINT @BankaKimden + ' sýndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralý hesaptan ' + @BankaKime 
-						+ ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralý hesaba ' + CAST(@Tutar AS NVARCHAR(MAX)) 
-						+ ' deðerinde para havale edilmiþtir.'
-						PRINT 'Son deðerler;'
+						PRINT @BankaKimden + ' sÄ±ndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesaptan ' + @BankaKime 
+						+ ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesaba ' + CAST(@Tutar AS NVARCHAR(MAX)) 
+						+ ' deÄŸerinde para havale edilmiÅŸtir.'
+						PRINT 'Son deÄŸerler;'
 
 						SELECT @GonderenBakiye = Bakiye FROM ABanka WHERE HesapNo = @GonderenHesapNo
 						SELECT @AlanBakiye = Bakiye FROM ABanka WHERE HesapNo = @AlanHesapNo
-						PRINT @BankaKimden + ' sýndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralý hesapta kalan bakiye :'
+						PRINT @BankaKimden + ' sÄ±ndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesapta kalan bakiye :'
 						+ CAST(@GonderenBakiye AS NVARCHAR(MAX))
-						PRINT @BankaKime + ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralý hesapta kalan bakiye :'
+						PRINT @BankaKime + ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesapta kalan bakiye :'
 						+ CAST(@AlanBakiye AS NVARCHAR(MAX))
 						COMMIT
 					 END
@@ -2100,7 +2100,7 @@ ELSE
 			SELECT @HesaptakiPara = Bakiye FROM BBanka WHERE HesapNo = @GonderenHesapNo
 			IF @Tutar > @HesaptakiPara
 				BEGIN
-					PRINT CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralý hesapta gönderilmek istenenden az para mevcuttur.'
+					PRINT CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesapta gÃ¶nderilmek istenenden az para mevcuttur.'
 					ROLLBACK
 				END
 			ELSE
@@ -2109,16 +2109,16 @@ ELSE
 						BEGIN
 							UPDATE BBanka SET Bakiye = Bakiye - @Tutar WHERE HesapNo = @GonderenHesapNo
 							UPDATE ABanka SET Bakiye = Bakiye + @Tutar WHERE HesapNo =  @AlanHesapNo
-							PRINT @BankaKimden + ' sýndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralý hesaptan ' + @BankaKime 
-							+ ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralý hesaba ' + CAST(@Tutar AS NVARCHAR(MAX)) 
-							+ ' deðerinde para havale edilmiþtir.'
-							PRINT 'Son deðerler;'
+							PRINT @BankaKimden + ' sÄ±ndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesaptan ' + @BankaKime 
+							+ ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesaba ' + CAST(@Tutar AS NVARCHAR(MAX)) 
+							+ ' deÄŸerinde para havale edilmiÅŸtir.'
+							PRINT 'Son deÄŸerler;'
 
 							SELECT @GonderenBakiye = Bakiye FROM BBanka WHERE HesapNo = @GonderenHesapNo
 							SELECT @AlanBakiye = Bakiye FROM ABanka WHERE HesapNo = @AlanHesapNo
-							PRINT @BankaKimden + ' sýndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralý hesapta kalan bakiye :'
+							PRINT @BankaKimden + ' sÄ±ndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesapta kalan bakiye :'
 							+ CAST(@GonderenBakiye AS NVARCHAR(MAX))
-							PRINT @BankaKime + ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralý hesapta kalan bakiye :'
+							PRINT @BankaKime + ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesapta kalan bakiye :'
 							+ CAST(@AlanBakiye AS NVARCHAR(MAX))
 							COMMIT
 						END
@@ -2126,16 +2126,16 @@ ELSE
 						BEGIN
 							UPDATE BBanka SET Bakiye = Bakiye - @Tutar WHERE HesapNo = @GonderenHesapNo
 							UPDATE BBanka SET Bakiye = Bakiye + @Tutar WHERE HesapNo =  @AlanHesapNo
-							PRINT @BankaKimden + ' sýndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralý hesaptan ' + @BankaKime 
-							+ ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralý hesaba ' + CAST(@Tutar AS NVARCHAR(MAX)) 
-							+ ' deðerinde para havale edilmiþtir.'
-							PRINT 'Son deðerler;'
+							PRINT @BankaKimden + ' sÄ±ndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesaptan ' + @BankaKime 
+							+ ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesaba ' + CAST(@Tutar AS NVARCHAR(MAX)) 
+							+ ' deÄŸerinde para havale edilmiÅŸtir.'
+							PRINT 'Son deÄŸerler;'
 
 							SELECT @GonderenBakiye = Bakiye FROM BBanka WHERE HesapNo = @GonderenHesapNo
 							SELECT @AlanBakiye = Bakiye FROM BBanka WHERE HesapNo = @AlanHesapNo
-							PRINT @BankaKimden + ' sýndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralý hesapta kalan bakiye :'
+							PRINT @BankaKimden + ' sÄ±ndaki ' + CAST(@GonderenHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesapta kalan bakiye :'
 							+ CAST(@GonderenBakiye AS NVARCHAR(MAX))
-							PRINT @BankaKime + ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralý hesapta kalan bakiye :'
+							PRINT @BankaKime + ' ndaki ' + CAST(@AlanHesapNo AS NVARCHAR(MAX)) + ' numaralÄ± hesapta kalan bakiye :'
 							+ CAST(@AlanBakiye AS NVARCHAR(MAX))
 							COMMIT
 						END
@@ -2175,18 +2175,18 @@ DECLARE @EskiBakiye NVARCHAR(MAX),@YeniBakiye NVARCHAR(MAX),@Tutar MONEY
 IF @Tutar < 0
 	BEGIN 
 		PRINT @AlanHesapNo
-		  INSERT ABankaRaporTablosu VALUES ('A bankasýndaki ' + @AlanHesapNo + ' nolu hesap '
+		  INSERT ABankaRaporTablosu VALUES ('A bankasÄ±ndaki ' + @AlanHesapNo + ' nolu hesap '
 		                                 + CAST(ABS(@Tutar) AS NVARCHAR) +' TL alarak ' + @EskiBakiye + ' TL den ' + 
 										 + @YeniBakiye + ' TL olarak '
-										 + CAST(GETDATE() AS NVARCHAR(MAX)) + ' TARÝHÝNDE HESAP GÜNCELLENMÝÞTÝR.')
+										 + CAST(GETDATE() AS NVARCHAR(MAX)) + ' TARÄ°HÄ°NDE HESAP GÃœNCELLENMÄ°ÅžTÄ°R.')
 	END
 ELSE
 	BEGIN
 		PRINT @AlanHesapNo
-		INSERT ABankaRaporTablosu VALUES ('A bankasýndaki ' + @GonderenHesapNo + ' nolu hesap ' 
+		INSERT ABankaRaporTablosu VALUES ('A bankasÄ±ndaki ' + @GonderenHesapNo + ' nolu hesap ' 
 		                                 + @EskiBakiye + ' TL den ' + CAST(@Tutar AS NVARCHAR)
-										 +' TL göndererek ' + @YeniBakiye + ' TL olarak '
-										 + CAST(GETDATE() AS NVARCHAR(MAX)) + ' TARÝHÝNDE HESAP GÜNCELLENMÝÞTÝR.')
+										 +' TL gÃ¶ndererek ' + @YeniBakiye + ' TL olarak '
+										 + CAST(GETDATE() AS NVARCHAR(MAX)) + ' TARÄ°HÄ°NDE HESAP GÃœNCELLENMÄ°ÅžTÄ°R.')
 	END
 
 
@@ -2211,28 +2211,30 @@ DECLARE @EskiBakiye NVARCHAR(MAX),@YeniBakiye NVARCHAR(MAX),@Tutar MONEY
 	SET @Tutar = CAST(@EskiBakiye AS MONEY) - CAST(@YeniBakiye AS MONEY)
 IF @Tutar < 0
 	BEGIN 
-		INSERT BBankaRaporTablosu VALUES ('B bankasýndaki ' + @AlanHesapNo + ' nolu hesap ' 
+		INSERT BBankaRaporTablosu VALUES ('B bankasÄ±ndaki ' + @AlanHesapNo + ' nolu hesap ' 
 										 + CAST(ABS(@Tutar) AS NVARCHAR) +' TL alarak ' 
 										 + @EskiBakiye + ' TL den ' + @YeniBakiye + ' TL olarak '
-										 + CAST(GETDATE() AS NVARCHAR(MAX)) + ' TARÝHÝNDE HESAP GÜNCELLENMÝÞTÝR.')
+										 + CAST(GETDATE() AS NVARCHAR(MAX)) + ' TARÄ°HÄ°NDE HESAP GÃœNCELLENMÄ°ÅžTÄ°R.')
 	END
 ELSE
 	BEGIN
-		INSERT BBankaRaporTablosu VALUES ('B bankasýndaki ' + @GonderenHesapNo + ' nolu hesap ' 
+		INSERT BBankaRaporTablosu VALUES ('B bankasÄ±ndaki ' + @GonderenHesapNo + ' nolu hesap ' 
 										 +  @EskiBakiye + ' TL den ' + CAST(@Tutar AS NVARCHAR)
-										 +' TL göndererek ' + @YeniBakiye + ' TL olarak '
-										 + CAST(GETDATE() AS NVARCHAR(MAX)) + ' TARÝHÝNDE HESAP GÜNCELLENMÝÞTÝR.')
+										 +' TL gÃ¶ndererek ' + @YeniBakiye + ' TL olarak '
+										 + CAST(GETDATE() AS NVARCHAR(MAX)) + ' TARÄ°HÄ°NDE HESAP GÃœNCELLENMÄ°ÅžTÄ°R.')
 	END
 
 
 
 ------------------------------------------------ TRANSACTION FINISH ------------------------------------------------
 
--- SQL SERVER VT yedeði alma ve yükleme
+-- SQL SERVER VT yedeÄŸi alma ve yÃ¼kleme
 
 -- 1.YOL
 -- Backup ile yedek alma
--- Restore ile yedeði yükleme
+-- Restore ile yedeÄŸi yÃ¼kleme
 
--- 2.YOL (Tavsiye edilen yöntem)
+-- 2.YOL (Tavsiye edilen yÃ¶ntem)
 -- Generate Scripts
+
+(https://www.youtube.com/watch?v=gKvNYxwrlJM)
