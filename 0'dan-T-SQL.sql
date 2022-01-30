@@ -2237,4 +2237,4 @@ ELSE
 -- 2.YOL (Tavsiye edilen yöntem)
 -- Generate Scripts
 
-(https://www.youtube.com/watch?v=gKvNYxwrlJM)
+https://www.youtube.com/watch?v=gKvNYxwrlJM
